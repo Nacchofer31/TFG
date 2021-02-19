@@ -1,0 +1,175 @@
+\chapter{Introducción}
+
+\textit{Descubrir imágenes hechas píxel de situaciones del día a día,
+naturaleza, edificios famosos, personas, y cuantas cosas más, esta es la verdadera esencia de
+los nonogramas, también conocidos como hanzies, picross o griddlers.}
+
+\section{Contexto y motivación}
+
+\textit{<<No importa lo complejo que sea resolver un nonograma, la clave de
+estos rompecabezas reside en que su resolución pueda efectuarse por simple
+lógica.>>} Este era el principal propósito de \textit{James Dalgety} y su equipo
+de diseñadores, responsables de dar a conocer a occidente este conocido
+pasatiempo nipón, impulsado por el arte de la diseñadora \textit{Non Ishida}, más
+adelante, responsable de su principal denominación: \textit{"Non"} Ishida y
+Dia\textit{"gram"}.
+
+No fue hasta mediados del año 1990, cuando finalmente se dio a conocer los \textit{nonogramas} a escala
+mundial, a través de una publicación del periódico británico \textit{The Sunday
+Telegraph}. Más adelante, el mismo noticiero adoptó el término bajo el
+seudónimo de \textit{griddlers}, publicándolos semanalmente.
+
+A partir de estas publicaciones, se fue difundiendo exponencialmente el famoso puzzle y
+se puede encontrar en revistas, otros periódicos y libros. Fue tan notable su
+crecimiento que, como otros rompecabezas, alcanzó con prontitud el formato
+digital, en forma de sitios web, videojuegos y aplicaciones.
+
+La capacidad creativa que ofrece resulta ilimitada, ya que con tan solo sus
+celdas dispuestas en forma de matriz \textit{(filas y columnas)}, permite
+representar todo tipo de figuras, siluetas y formas, como si de un lienzo se
+tratara. 
+
+Sorprendentemente y a pesar de que nos encontramos en plena era digital, son pocos los
+medios que ofrecen una capacidad de creación, más allá del simple
+tradicional método del lápiz y papel y así esta herramienta ayuda y otorga al jugador no solo el rol de \textit{resolutor} sino de \textit{creador},
+e impulsa que la cuantía de \textit{nonogramas} a resolver no ceda.
+
+Un medio digital es ideal para, no solo hacer que esta propiedad de creación sea posible, sino de facilitar su proceso 
+y que sea lo más liviano y recreativo posible, de esta forma las aplicaciones móviles, cada vez más conocidas y presentes en nuestra sociedad, constituyen el entorno
+perfecto.
+
+Siguiendo esta premisa, lo que sería adecuado es que cualquier usuario pudiera, dentro de lo posible, emplear estos medios
+independientemente de cual sean las características técnicas, sistemas operativos y prestaciones de sus dispositivos.
+
+\section{Objetivos}
+
+El presente trabajo explora el submundo de las aplicaciones móviles y propone
+una solución software para: i) permitir al usuario de resolver \textit{nonogramas} de forma
+interactiva ii) dar la oportunidad de crear sus propios puzzles como lo hizo
+\textit{James Dalgety} y su equipo y compartirlos con todos los demás usuarios,
+promoviendo así una comunidad de entusiastas de este divertido rompecabezas.
+
+Por consiguiente, para el correcto desarrollo y funcionamiento de la aplicación se deben de
+cumplir una serie de requerimientos a nivel técnico bien diferenciados:
+\begin{itemize}
+   \item[$\bullet$] Estudiar y desarrollar un algoritmo integrado en el aplicativo, con el fin de posibilitar al usuario
+   crear y resolver \textit{nonogramas} en un dispositivo móvil, bajo unas variables determinadas, siempre dando prioridad a la experiencia de juego.
+   \item[$\bullet$] Implementar un \textit{backend} con el que el aplicativo pueda complementar sus funcionalidades con \textit{servicios en nube},
+   tales como la base de datos, sincronización o inicios de sesión.
+   \item[$\bullet$] Seguir los principios de \textit{Clean Arquitecture} durante el proceso de desarrollo, implementando patrones de diseño y
+   aplicando \textit{suites de test} con el objetivo de aminorar el proceso de mantenimiento.
+   \item[$\bullet$] Definir y realizar un MVP \textit{(Mininum Viable Product)}, con el que usuario pueda, en una primera versión,
+   hacer uso de sus funciones principales.
+\end{itemize}
+
+Finalmente, encontramos requisitos de índole personal, que progresivamente se considerarán como cumplidos durante todo el desarrollo del proyecto,
+tales como:
+
+\begin{itemize}
+   \item[$\bullet$] Ahondar en el desarrollo de una aplicación móvil, desde su inicio hasta su finalización,
+   bebiendo de buenas prácticas y recomendaciones propuestas por artículos, documentaciones y comunidades de desarrolladores.
+   \item[$\bullet$] Comprender y profundizar en el extenso mundo de desarrollo de juegos de puzzles, haciendo frente y reduciendo su
+   marcada complejidad.
+\end{itemize}
+
+\section{Metodología}
+
+El aplicativo resultante, como cualquier otra solución software, debe satisfacer una serie de requerimientos frente un problema
+o problemas concretos. %% TODO: Biblio: definición de aplicación
+Esta solución podría residir o enfocarse en diferentes plataformas, bajo una perspectiva
+tanto de \textit{software} como de \textit{hardware}.
+
+Así mismo, antes de que esté considerada preparada la aplicación para su uso, ha de atravesar por una serie de procesos,
+que difieren mucho de un simple desarrollo y en su conjunto reciben el nombre de \textit{System Development Life Cycle (SDLC)},
+que corresponden a su ciclo de vida.
+
+\subsection{Ciclo de vida de desarrollo}
+Comprender esta serie de procesos sucesivos, junto a los requisitos recién comentados, es definitorio para elegir una metodología ideal,
+que sirva como guía para el correcto desarrollo total del producto.
+
+\begin{itemize}
+   \item[$\bullet$] \textbf{Planificación}: identificar los requisitos necesarios para la aplicación,
+   considerando y comparando otras soluciones disponibles, para así establecer un \textit{target} o perfil de usuario ideal
+   para nuestra aplicación, sin entrar en el apartado técnico.
+   \item[$\bullet$] \textbf{Análisis}: establecer los requisitos funcionales de la aplicación, recopilando 
+   y anticipándose a aquellos que puedan suponer un problema para la evolución del ciclo de vida.
+   \item[$\bullet$] \textbf{Diseño}: documentar las, ya definitivas, características, partes y componentes a integrar en el aplicativo.
+   \item[$\bullet$] \textbf{Codificación}: seguir los requisitos ya debidamente documentados e implementarlos creando así el aplicativo. 
+   \item[$\bullet$] \textbf{Testing}: una vez desarrollada la solución, realizar \textit{suites de tests} con el fin de encontrar o mostrar
+   posibles errores y \textit{bugs}. Además de verificar que los requisitos de la fase de diseño están presentes en la solución.  
+   \item[$\bullet$] \textbf{Implementación}: desplegar una primera versión de la aplicación y hacerla disponible en las tiendas principales
+   de aplicaciones. 
+   \item[$\bullet$] \textbf{Mantenimiento}: monitorizar la experiencia de usuario, contemplando y dando solución a posibles errores,
+   además de realizar cambios y mejoras en forma de nuevas versiones.
+\end{itemize}
+
+Puesto que en el presente trabajo, durante la primera fase de Planificación, los requisitos han sido detectados y establecidos bajo unos tiempos 
+y conocimientos concretos, se ha optado por el modelo clásico de \textit{Modelo en Cascada}.
+
+\subsection{Modelo en casacada} %% http://www.umsl.edu/~hugheyd/is6840/waterfall.html
+
+Siguiendo esta metodología, como se mustra en la Figura ~\ref{fig:M1}, se implantaría un modelo secuencial de todas las diferentes fases del 
+\textit{SDLC} del aplicativo, 
+desde su fase de Planificación hasta su Mantenimiento, como si se tratara de una cascada.
+
+\begin{figure}[h!]
+\begin{tikzpicture}[>=stealth,
+   node distance = 3mm and -12mm,
+     start chain = A going below right,
+every node/.style = {draw, text width=28mm, minimum height=9mm, align=center,
+                    inner sep=1mm, fill=white, drop shadow={fill=black},  on chain=A}
+                  ]
+\node {Planificación}; % A-1
+\node {Análisis};
+\node {Diseño};
+\node {Codificación};
+\node {Testing};
+\node {Implementación};
+\node {Mantenimiento};
+%
+\foreach \i [count=\j] in {2,...,7}
+{
+ \draw[->, thick] (A-\j) -| (A-\i);
+}
+\end{tikzpicture}
+\caption{Esquema de un Modelo en cascada} \label{fig:M1}
+\end{figure}
+
+Sin embargo, como cualquier otra metodología software, es necesario tener en cuenta ciertas consideraciones imprescindibles para el transcurso del proyecto:
+
+\begin{itemize}
+   \item[$\bullet$] Como ya se había comentado, es necesario hacer hincapié en las etapas tempranas del modelo, ya que son
+   las que van a definir de manera correcta los requisitos de la solución. De forma que, si no están bien establecidos, pueden 
+   aparecer problemas en el resto de fases~\cite{wiegers2013software}.
+   \item[$\bullet$] Esta metodología carece de iteraciones por lo que no es posible retroceder a las etapas anteriores.
+   Hay que cerciorarse de que cada una de las fases se aprueban correctamente, de forma que sea seguro pasar a la
+   fase siguiente.
+   \item[$\bullet$] En la práctica, es recomendable marcar bien los tiempos de cada fase, marcando estimaciones de cada fase y contrastarlas con
+   el tiempo real que ha supuesto realizarlas. Esta especie de monitorización se realizará periódicamente y se puede encontrar 
+   en el \autoref{chap:A1}.
+\end{itemize}
+
+\section{Estructura de la memoria} %%%%% Opcional
+
+El resto de capítulos que conforman la memoria, son los que se resumen a continuación:
+
+\begin{itemize}
+   \item[$\bullet$] \textbf{Capítulo 2. Estudio estratégico}: corresponde al conocido apartado \textit{estado del arte}, en el que se realiza una labor 
+   de estudio de aquellas soluciones relacionadas con \textit{nonogramas} dentro del mundo digital y que puedan ayudar a la identificación y extracción de requisitos.
+   \item[$\bullet$] \textbf{Capítulo 3. Análisis del problema}: en este capítulo se expone la parte de especificación de requisitos,
+    identificando aquellos que puedan repercutir negativamente al transcurso del proyecto.
+   \item[$\bullet$] \textbf{Capítulo 4. Diseño de la solución}: se muestran las decisiones que se han tomado a nivel de arquitectura, patrones de diseño, 
+   y tecnologías empleadas.
+   \item[$\bullet$] \textbf{Capítulo 5. Codificación}: se comentan las distintas partes que han compuesto el aplicativo, cómo se comportan y 
+   el funcionamiento interno de cada una de ellas, entrando en el apartado técnico.
+   \item[$\bullet$] \textbf{Capítulo 6. Pruebas}: se muestran el conjunto de pruebas, que se han desarrollado para la posible identificación de 
+   errores y posibles fallos en su ejecución, todas ellas divididas en tipos. 
+   \item[$\bullet$] \textbf{Capítulo 7. Implementación y mantenimiento}: se explica el paso que se ha realizado para hacer que el aplicativo sea accesible
+   para los usuarios y las medidas para su mantenimiento. 
+   \item[$\bullet$] \textbf{Capítulo 8. Manual de uso}: presenta una pequeña demo con el fin de que el usuario se familiarice con el uso de
+   la solución, mostrando capturas del mismo.
+   \item[$\bullet$] \textbf{Capítulo 9. Conclusión y Trabajo Futuro}: contempla las conclusiones que se han obtenido durante la realización del trabajo y
+   las mejoras que se tomarán para siguientes versiones del misno.
+   \item[$\bullet$] \textbf{Apéndices}: se muestran anexos relacionados con análisis de tiempos y apartados relacionados con el de Codificación del
+   producto.
+\end{itemize}

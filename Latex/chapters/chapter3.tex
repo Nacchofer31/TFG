@@ -1,0 +1,29 @@
+\chapter{Análisis del problema}
+\textit{La Ingeniería de Requisitos (IR) es el área más importante de la Ingeniería de Software y posiblemente de todo el ciclo de vida de 
+una solución software~\cite{chakraboty2012requirements}.}
+
+\section{?? ???? ???? ? ?? ??}
+
+\tikzumlset{fill usecase=white}
+\begin{tikzpicture}
+    \begin{umlsystem}[x=4, fill=black!10] {Aplicativo} % empty title
+        \umlusecase[name=a,width=1.5cm] {Use case}
+        \umlusecase[name=b,x=6,width=2.5cm] {Use case b}
+        \umlusecase[name=c,x=6,y=-3,width=2.5cm] {Use case c}
+        \umlusecase[name=d,y=-3,width=2.5cm] {Use case d}
+    \end{umlsystem}
+
+
+    \umlactor[y=-1,scale=0.7] {Usuario}
+
+    \umlassoc{Usuario}{a}
+    
+    % \umlextend{a}{b}
+    % \umlinclude{c}{d}
+
+    % manual versions of the above
+    \draw [tikzuml dependency style] (a) -- node[above] {$\ll \text{extend} \gg$} (b);
+    \draw [tikzuml dependency style] (d) -- node[above] {$\ll \text{include} \gg$} (c);
+
+    % bent association
+  \end{tikzpicture}
