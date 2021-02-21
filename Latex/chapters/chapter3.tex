@@ -1,29 +1,259 @@
 \chapter{Análisis del problema}
-\textit{La Ingeniería de Requisitos (IR) es el área más importante de la Ingeniería de Software y posiblemente de todo el ciclo de vida de 
-una solución software~\cite{chakraboty2012requirements}.}
+\textit{La Ingeniería de Requisitos (IR) es el área más importante de la Ingeniería de Software y posiblemente de todo el 
+ciclo de vida de una solución software (SDLC)~\cite{chakraboty2012requirements}. Esta etapa es la responsable de que los 
+requisitos recién detectados, aún incompletos e imprecisos, se transformen en especificaciones formales del aplicativo final.}
 
-\section{?? ???? ???? ? ?? ??}
+\section{Especificación de requisitos}
+Para llevar a cabo la especificación total de requisitos se seguirá la norma tradicional establecida por el estándar internacional 
+IEEE Std 830-1998~\cite{8559686}, elegido por una gran mayoría de jefes de departamentos software por su gran agilidad en la fase de gestión 
+de requisitos~\cite{guzman2018impacto}.
+
+A continuación, de acuerdo a la normativa ISO elegida, se mostrarán los contenidos acompañados por diagramas y buenas prácticas.
+
+\subsection{Propósito}
+El propósito de esta sección es la de definir y formalizar los requerimientos que debe incorporar el \textit{MVP} del aplicativo, facilitando
+y guiando el desarrollo del mismo.
+
+\subsection{Ámbito}
+El ámbito, como se ha comentado en cápitulos anteriores, es el de las aplicaciones móviles disponibles en plataformas \textit{iOS} y 
+\textit{Android}.
+
+El aplicativo en su versión \textit{MVP} adoptará el nombre provisional de \textit{NonoChallenge}, compuesto por el juego de palabras:
+ \textit{Nonograma} junto con el término anglosajón \textit{Challenge} (reto).
+En el cual, el usario hará uso de sus servicios propios y \textit{en nube} tales como inicios de sesión, interacción con base de datos y
+sincronización.
+
+\subsection{Terminología}
+Los términos relacionados con la ontología del sistema se ven enumerados y descritos por la Tabla~\ref{fig:table2}.
+
+\begin{table}[H]
+  \caption{Glosario de términos ontológicos del aplicativo}
+    \begin{tabular}{ | c | c |}
+      \hline
+      \thead{Término} & \thead{Descripción} \\
+      \hline
+      \makecell{Usuario} &  Persona que hará el uso del conjunto de funcionalidades del aplicativo final  \\
+      \hline
+      \makecell{Nonograma} &  \makecell{Rompecabezas de MxN dimensiones}  \\
+      \hline
+      \makecell{Nivel} &  Nonograma a crear o resolver por el Usuario\\
+      \hline
+      \makecell{Progreso} &  \makecell{Datos relacionados con la persistencia de la resolución de un nivel} \\
+      \hline
+    \end{tabular}
+    \label{fig:table2}
+\end{table}
+
+Por otra parte, los términos técnicos que componen el sistema son los que siguen:
+
+\begin{table}[H]
+    \caption{Glosario de términos técnicos del aplicativo}
+      \begin{tabular}{ | c | c |}
+        \hline
+        \thead{Término} & \thead{Descripción} \\
+        \hline
+        \makecell{Nombre \\ de usuario} &  \makecell{Nombre que adoptará el Usuario de forma opcional para su\\identificación en el aplicativo.}  \\
+        \hline
+        \makecell{Email} &  \makecell{Cuenta de correo que hará uso el usuario para acceder a los servicios \textit{en nube}}  \\
+        \hline
+        \makecell{Fecha de \\ publicación} &  Fecha en la que el usuario crea y publica un nivel  \\
+        \hline
+        \makecell{Figura} &  Nombre identificativo de un nonograma \\
+        \hline
+        \makecell{Vidas} &  Número de intentos en la resolución de un nivel \\
+        \hline
+        
+      \end{tabular}
+      \label{fig:table3}
+  \end{table}
+
+  \subsection{Modelo de Dominio}
+  Una vez introducida la términología propia del sistema, para un mayor entendimiento del contexto del mismo, se represesenta un  
+  diagrama de clases de acuedo a las reglas clásicas UML, como se pude visualizar en la Figura~\ref{fig:dom1}.
+
+  \begin{figure}[H]
+    \centering
+  \begin{tikzpicture}
+    \begin{umlpackage}[fill=black!10]{Sistema}
+      \umlclass[x=1,y=1]{Usuario}{uid : string \\ nombreUsuario : string? \\ email : string? \\ numCompletados : int}{}
+      \umlclass[x=2,y=-3.8]{Nivel}{uid : string \\ fechaPub : datetime? \\ figura : string \\ vidas : int}{}
+      \umlclass[x=9,y=-3.8]{Nonograma}{  width : int \\ height : int \\ celdasCorrectas : List<int>}{}
+      \umlclass[x=8,y=1]{<<data>> Progreso}{id : int \\ completado : int \\ celdasMarcadas : string? \\ celdasDescartadas : string? \\ vidas : int}{}
+    \end{umlpackage}
+      
+    \umlassoc[pos=0.6,arg=crea,mult1=1,mult2=0*, anchors=-130 and 130] {Usuario}{Nivel}
+    \umlassoc[pos=0.6,arg=resuelve,mult1=1,mult2=0*, anchors=-60 and 55] {Usuario}{Nivel}
+    \umlassoc[pos=0.7,arg=contiene,mult1=1,mult2=1] {Nivel}{Nonograma}
+    \umlassoc[arg=tiene,mult1=1,mult2=0..1] {Nivel}{<<data>> Progreso}
+    % \umlassoc[geometry=-|-, arg1=tata, mult1=*, pos1=0.3, arg2=toto, mult2=1, pos2=2.9, align2=left]{C}{B}
+    % \umlunicompo[geometry=-|, arg=titi, mult=*, pos=1.7, stereo=vector]{D}{C}
+    % \umlaggreg[arg=tutu, mult=1, pos=0.8, angle1=30, angle2=60, loopsize=2cm]{D}{D}
+    % \umlinherit[geometry=-|]{D}{B}
+    \end{tikzpicture}
+    \caption{Diagrama del modelo de dominio}
+   \label{fig:dom1}
+  \end{figure}
+
+  A continuación, se comenta la función de cada de una de las clases conceptuales y se enumeran en las Tablas~\ref{fig:table3}-~\ref{fig:table6} 
+  los atributos que las componen. \textit{(La anotación ? al lado del tipo refleja su posibilidad de
+  nulidad en el sistema.)}
+  
+
+  \textbf{$\bullet$ Clase Usuario}: Conjunto de datos del usuario relacionados con el sistema.
+
+  \begin{table}[H]
+    \centering
+    \caption{Atributos de la clase Usuario}
+      \begin{tabular}{ | c | c |}
+        \hline
+        \thead{Atributos de Usuario} & \thead{Descripción} \\
+        \hline
+        \makecell{uid\\\textit{\textit{string}}} & \makecell{Cadena de caracteres único que identifica al usuario a \\nivel interno}\\
+        \hline
+        \makecell{nombre de Usuario\\\textit{string?}} & Pseudónimo único a elegir por el usuario en el sistema \\
+        \hline
+        \makecell{email\\\textit{string?}} &  Cuenta de correo de registro única para el usuario\\
+        \hline
+        \makecell{numCompletados\\\textit{int}} &  \makecell{Número de niveles completados por el usuario} \\
+        \hline
+      \end{tabular}
+      \label{fig:table3}
+  \end{table}
+
+  \textbf{$\bullet$ Clase Nivel}: Muestra las características de un determinado nivel a resolver.
+
+  \begin{table}[H]
+    \centering
+    \caption{Atributos de la clase Nivel}
+      \begin{tabular}{ | c | c |}
+        \hline
+        \thead{Atributos de Nivel} & \thead{Descripción} \\
+        \hline
+        \makecell{uid\\\textit{\textit{string}}} & \makecell{Cadena de caracteres único que identifica al nivel}\\
+        \hline
+        \makecell{fecha de Publicación\\\textit{dateTime?}} & Fecha de creación del nonograma en caso de llegar a publicarse \\
+        \hline
+        \makecell{figura\\\textit{string}} &  Nombre del nivel mostrado una vez resuelto\\
+        \hline
+        \makecell{vidas\\\textit{int}} &  \makecell{Número de intentos que dispone un usuario para la resolución de \\un nivel} \\
+        \hline
+      \end{tabular}
+      \label{fig:table4}
+  \end{table}
+
+  \textbf{$\bullet$ Clase Progreso}: Clase de persistencia que contiene los datos durante la resolución de un nivel.
+
+  \begin{table}[H]
+    \centering
+    \caption{Atributos de la clase Progreso}
+      \begin{tabular}{ | c | c |}
+        \hline
+        \thead{Atributos de Progreso} & \thead{Descripción} \\
+        \hline
+        \makecell{id\\\textit{int}} & \makecell{Número de identificación del progreso de un determinado nivel}\\
+        \hline
+        \makecell{completado\\\textit{int}} & \makecell{Indica con un 1 si el nivel está resuelto y 0 si no lo está\\
+        (simulando un dato de tipo booleano)}\\
+        \hline
+        \makecell{celdasMarcadas\\\textit{string}} &  \makecell{Números de las celdas pintadas separados por delimitadores\\
+        (simulando un dato de tipo lista de enteros)}\\
+        \hline
+        \makecell{celdasDescartadas\\\textit{string}} &  \makecell{Números de las celdas descartadas separados por delimitadores\\
+        (simulando un dato de tipo lista de enteros)}\\
+        \hline
+        \makecell{vidas\\\textit{int}} &  \makecell{Números de vidas que dispone el usuario en ese momento}\\
+        \hline
+      \end{tabular}
+      \label{fig:table5}
+  \end{table}
+  \hfill 
+
+  \textbf{$\bullet$ Clase Nonograma}: Contiene los datos del nonograma de un determinado nivel.
+
+  \begin{table}[H]
+    \centering
+    \caption{Atributos de la clase Nonograma}
+      \begin{tabular}{ | c | c |}
+        \hline
+        \thead{Atributos de Nonograma} & \thead{Descripción} \\
+        \hline
+        \makecell{width\\\textit{int}} & \makecell{Número de filas de celdas que compone el Nonograma}\\
+        \hline
+        \makecell{height\\\textit{int}} & Número de columnas de celdas que compone el Nonograma \\
+        \hline
+        \makecell{celdasCorrectas\\\textit{List<int>}} & \makecell{Lista de los números de celdas que componen \\
+        la solución del Nonograma} \\
+        \hline
+      \end{tabular}
+      \label{fig:table6}
+  \end{table}
+
+  \subsection{Límites del Sistema}
+  Para representar los límites de la aplicación, se emplea un diagrama de contexto en el que se muestra la jerarquía de los actores 
+  que van a interactúan con el aplicativo.
 
 \tikzumlset{fill usecase=white}
+\begin{figure}[H]
+  \centering
 \begin{tikzpicture}
-    \begin{umlsystem}[x=4, fill=black!10] {Aplicativo} % empty title
-        \umlusecase[name=a,width=1.5cm] {Use case}
-        \umlusecase[name=b,x=6,width=2.5cm] {Use case b}
-        \umlusecase[name=c,x=6,y=-3,width=2.5cm] {Use case c}
-        \umlusecase[name=d,y=-3,width=2.5cm] {Use case d}
+    \begin{umlsystem}[x=5,y=-3,fill=black!10] {Aplicativo} % empty title
+        % \umlusecase[name=a,width=1.5cm] {Use case}
+        % \umlusecase[name=b,x=6,width=2.5cm] {Use case b}
+        % \umlusecase[name=c,x=6,y=-3,width=2.5cm] {Use case c}
+        % \umlusecase[name=d,y=-3,width=2.5cm] {Use case d}
     \end{umlsystem}
 
 
-    \umlactor[y=-1,scale=0.7] {Usuario}
+    \umlactor[y=-1] {Usuario}
+    \umlactor[y=-4] {Usuario Registrado}
 
-    \umlassoc{Usuario}{a}
+    \umlassoc{Usuario}{Aplicativo}
+    \umlinherit{Usuario Registrado}{Usuario}
     
     % \umlextend{a}{b}
     % \umlinclude{c}{d}
 
     % manual versions of the above
-    \draw [tikzuml dependency style] (a) -- node[above] {$\ll \text{extend} \gg$} (b);
-    \draw [tikzuml dependency style] (d) -- node[above] {$\ll \text{include} \gg$} (c);
+    % \draw [tikzuml dependency style] (a) -- node[above] {$\ll \text{extend} \gg$} (b);
+    % \draw [tikzuml dependency style] (d) -- node[above] {$\ll \text{include} \gg$} (c);
 
     % bent association
   \end{tikzpicture}
+  \caption{Diagrama de Contexto del aplicativo}
+   \label{fig:dom2}
+\end{figure}
+
+Como se puede apreciar en el diagrama de la Figura~\ref{fig:dom2}, únicamente van a interacutar dos actores con el sistema: i) el usuario sin registro,
+que emplea únicamente las funciones locales del sistema y ii) el usuario registrado, que podrá emplear tanto las funciones locales como
+\textit{en nube} del aplicativo.
+
+\subsection{Restricciones del Sistema}
+
+En este apartado se muestran algunas de las restricciones que pueden impedir algunas de las funcionalidades que ofrece el sistema
+al usuario, vistos en la Tabla ~\ref{fig:table7}.
+
+\begin{table}[H]
+  \centering
+  \caption{Restricciones del sistema}
+    \begin{tabular}{ | c | c |}
+      \hline
+      \thead{Restricción} & \thead{Descripción} \\
+      \hline
+      \makecell{Memoria del\\ dispositivo} & \makecell{Posibilidad de que el dispositivo no tenga suficiente memoria
+      \\disponible para guardar el progreso de la resolución de los niveles.\\\textit{Probabilidad prácticamente despreciable} }\\
+      \hline
+      \makecell{Conexión a\\internet} & \makecell{Las funcionalidades \textit{en nube} requieren de conexión a internet\\ para poder 
+      llegar a usarse.} \\
+      \hline
+      \makecell{Cuenta\\de Google} &  \makecell{El usuario pueder carecer de una cuenta de correo de Google\\necesaria para hacer uso de las funcionalidades 
+      \textit{en nube}.} \\
+      \hline
+    \end{tabular}
+    \label{fig:table7}
+\end{table}
+
+\subsection{Características del Sistema}
+Una vez vistas las limitaciones y restricciones del sistema, se pueden analizar las características finales a incorporar en la aplicación.
+
+
+
