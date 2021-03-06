@@ -1,0 +1,205 @@
+\chapter{Diseño de la solución}
+\textit{El desarrollo de una aplicación multiplataforma es una opción cada vez más a tener en 
+cuenta dentro del ámbito del desarrollo móvil~\cite{10.1145/3241739}. La mayor parte de desarrollos
+se van a querer destinar a las principales plataformas móviles, 
+con el fin de llegar al máximo número de usuarios posibles.
+}
+
+\section{Tecnología empleada}
+Como se había decidido en el segundo capítulo, la realización de este \textit{MVP} irá dirigido para las
+plataformas móviles: \textit{Android} e \textit{iOS}. El desarrollo de un aplicación \textit{nativa} para 
+cada sistema, evidentemente, no sería factible, ya que implicaría el doble de esfuerzo en la codificación,
+testing y mantenimiento del producto~\cite{10.1145/2480362.2480464}.
+
+Por ello, es necesario el uso de un \textit{framework} de ámbito multiplataforma que nos proporcione un
+soporte para ambas plataformas. En este caso, se ha optado por la prometedora herramienta de desarrollo
+impulsada por \textit{Google}: \textit{Flutter}.
+
+\subsection{Flutter y Dart}
+\textit{Flutter} junto a su lenguaje de programación principal, \textit{Dart}, buscan 
+aproximar al usuario la apariencia y rendimiento 
+propio al de un desarrollo \textit{nativo}, aprovechando todas las ventajas que proporciona 
+un \textit{framework multiplataforma}~\cite{7934674}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{images/flutter1.pdf}
+    \caption{Diagrama de renderización de \textit{Flutter}\cite{leler2019s}}
+    \label{fig:flutter1}
+  \end{figure}
+
+Esta relación \textit{apariencia/rendimiento}, la consigue \textit{Flutter} de forma exitosa
+\textit{renderizando} directamente sus componentes, 
+\textit{widgets}, en un \textit{canvas}, permitiendo visualizar el mismo componente en las diferentes plataformas.
+Del mismo modo, realiza la conversión directa de servicios propios, \textit{Platform Channels}, en librerías nativas que
+interactúan con las funcionalidades propias del dispositivo~\cite{leler2019s}, 
+tal y como se puede visualizar en la Figura \ref{fig:flutter1}.
+
+Esta en una de las razones principales por las que se ha elegido el uso de este herramienta frente a otros 
+\textit{frameworks} de desarrollo móvil como: 
+
+\begin{itemize}
+    \item[$\bullet$] Los \textit{frameworks interpretados} como: \textit{React Native} y \textit{Vue Native}, 
+    que necesitan de una
+    capa adicional para realizar la conversión a \textit{componentes nativos}, afectando al rendimiento.
+    \item[$\bullet$] Los \textit{frameworks embebidos} como
+    \textit{Ionic} que emplea un \textit{WebView} para mostrar los componentes dependiendo de la conexión a 
+    Internet del dispositivo.
+ \end{itemize}
+
+ \subsection{Firebase}
+ Para todas las funcionalidades relacionadas con servicios \textit{en nube}, vistos en la fase de Análisis,
+ se empleará la plataforma de desarrollo backend impulsada y recomendada por \textit{Google}: \textit{Firebase}.
+
+Gracias a que \textit{Firebase} presenta una base de datos del tipo \textit{real-time}, permitirá 
+la sincronización de los datos durante la ejecución del
+aplicativo~\cite{khawas2018application}. Esta característica resulta ideal, ya que
+\textit{Flutter} al tratarse de un \textit{framework "declarativo"} no requiere de eventos para
+sincronizar los datos, permitiendo al usuario visualizar los datos, en todo momento, sincronizados en pantalla,
+sin necesidad de que el usuario realice un \textit{input de refrescar}.
+
+Además, esta, al pertenecer al tipo de las \textit{no relacionales}, presenta ciertos beneficios frente a 
+las \textit{relacionales},
+a tener en cuenta en la definición de los modelos, tales como flexibilidad, seguridad y rendimiento.
+
+La funcionalidades \textit{in-cloud} del \textit{back-end} de la aplicación final 
+quedarán cubiertas por los apartados mostrados en la Tabla \ref{fig:tableFirebase}
+
+\begin{table}[H]
+    \centering
+    \caption{Funcionalidades \textit{en nube} cubiertas por \textit{Firebase}}
+      \begin{tabular}{ | c | c |}
+        \hline
+        \thead{Funcionalidad} & \thead{Tecnología} \\
+        \hline
+        \makecell{Autentificación} &  \makecell{\textbf{Firebase Authentication}, permite al usuario el acceso a las funciones de \\ la plataforma
+        mediante inicio sesión tradicional \\ (cuenta de correo y contraseña)  o por RRSS.} \\
+        \hline
+        \makecell{Base de datos} &   \makecell{\textbf{Firebase Firestore}, permite al usuario interactuar mediante \\ funciones CRUD 
+        la base de datos del sistema.} \\
+        \hline
+        \makecell{Analíticas} &  \makecell{\textbf{Firebase Analytics}, monitoriza la experiencia de usuario y extrae\\ estadísticas de cara 
+        al lanzamiento de futuras versiones tales como:\\ porcentaje de usuarios libre de errores, número de usuarios activos...} \\
+        \hline
+      \end{tabular}
+      \label{fig:tableFirebase}
+  \end{table}
+
+  \subsection{Visual Studio Code}
+Como \textit{IDE} de desarrollo se empleará la herramienta \textit{Visual Studio Code}, desarrollado por
+\textit{Microsoft}, frente a otros entornos como: \textit{XCode} y \textit{Android Studio}, ya que este dispone
+de una gran cantidad de \textit{extensiones o plugins} que facilitan notablemente el proceso de \textit{codificación},
+además de estar mejor optimizado para labores de \textit{compilación y depuración.}
+
+\subsection{GitHub}
+Se empleará \textit{GitHub} para el \textit{control de versiones}, siguiendo la metodología propias de 
+\textit{GitFlow}, en el que tendremos, como se puede visualizar en la Figura~\ref{fig:gitflow1}:
+i) una rama \textit{master} para versiones finales del aplicativo,
+ii) una rama \textit{develop} en la que aunar y testar las funcionalidades desarrolladas y iii) las ramas
+\textit{feature} que se crearán por cada caso de uso a desarrollar.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{images/gitflow1.pdf}
+    \caption{Diagrama del funcionamiento de \textit{GitFlow}}
+    \label{fig:gitflow1}
+  \end{figure}
+
+Además, nos nutriremos de las buenas prácticas, \textit{librerías} y \textit{repositorios} disponibles en la plataforma,
+aprovechando la subida exponencial de la comunidad \textit{Flutter} en este último año, posicionándose
+dentro de las tecnologías con más \textit{stars} en el \textit{sitio web}~\cite{gittracker}.
+
+\section{Arquitectura del Sistema}
+Una vez definidas las tecnologías que se van a utilizar para el desarrollo de la solución, es importante definir una 
+arquitectura que encaje dentro del abanico de requisitos que se desean incluir, además de las funcionalidades que
+aportan las tecnologías estudiadas.
+
+Se requiere de una arquitectura de \textit{software} que no tenga tanta complejidad, ya que no se trata de un
+proceso industrial y el desarrollo va a ser realizado por una persona, además de estar bien establecida, ya que
+no se quiere entorpecer la escalabilidad del sistema, facilitando, de esta forma, las fases de testeo y mantenimiento.
+
+Para un desarrollo con \textit{Flutter} como \textit{framework} de desarrollo \textit{front-end} y \textit{Firebase}
+como infraestructura de servicios \textit{back-end}, se empleará, \textit{la arquitectura por capas}, o 
+\textit{Layered Architecture} 
+una de las más arquitecturas más conocidas y elegidas en entornos de desarrollo móvil~\cite{7053865}.
+
+\subsection{Arquitectura por capas}
+El objetivo de esta arquitectura es la de abstraer lo máximo posible los diferentes bloques o componentes que van a
+conformar el sistema. 
+
+Empleando la siguiente arquitectura se pretenderá obtener, a corto y largo plazo,  los siguientes beneficios:
+
+\begin{itemize}
+  \item[$\bullet$] Componentes que desempeñan una única funcionalidad bien definida.
+  \item[$\bullet$] Mayor escalabilidad, favoreciendo la inclusión de nuevas funcionalidades.
+  \item[$\bullet$] Facilidad en la identificación de posibles \textit{bugs} o errores relativos a la
+  ejecución del aplicativo.
+  \item[$\bullet$] Permite la inclusión de \textit{patrones de diseño} en el sistema.
+  \item[$\bullet$] Código más legible y fácil de entender.
+\end{itemize}
+
+Mediante esta arquitectura es posible dividir el sistema mediante N bloques, para el aplicativo final se ha optado por una
+arquitectura dividida en cuatro capas, como se puede visualizar en la Figura~\ref{fig:architecture1}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.8]{images/architecture.pdf}
+  \caption{Diagrama de \textit{Arquitectura basada en cuatro capas}}
+  \label{fig:architecture1}
+\end{figure}
+
+A continuación, se comentará la funcionalidad de cada una de las capas, en la Tabla~\ref{fig:tablelayers}:
+
+\begin{table}[H]
+  \centering
+  \caption{Función de las capas de la arquitectura del sistema}
+    \begin{tabular}{ | c | c |}
+      \hline
+      \thead{Capa} & \thead{Funcionalidad} \\
+      \hline
+      \makecell{Capa de \\ presentación} &  \makecell{Mediante \textit{widgets} se presentarán todas las vistas
+      y componentes\\ que contiene el aplicativo.} \\
+      \hline
+      \makecell{Capa de \\ negocio} &   \makecell{A partir de \textit{manejadores de estados} se controlarán todos los \\ cambios de
+      estado presentes en la capa de \textit{presentación}.} \\
+      \hline
+      \makecell{Capa de \\ dominio} &  \makecell{Las interfaces \textit{repositorio} servirán de esqueleto \\ para las clases relacionadas con
+      la capa de \textit{datos}.} \\
+      \hline
+      \makecell{Capa de \\ datos} &  \makecell{Implementando las interfaces de la capa de \textit{dominio} se
+      obtendrán los \\ datos de fuentes externas como nuestro \textit{back-end} de \textit{Firebase}} \\
+      \hline
+    \end{tabular}
+    \label{fig:tablelayers}
+\end{table}
+
+Es importante remarcar que, en algunas arquitecturas como \textit{Clean Arquitecture}, se suele abstraer un nivel más 
+la capa de dominio aislándolo del sistema, en forma de paquetes externos, 
+con el fin de reutilizarlo en otras soluciones~\cite{9071367}.
+
+\subsection{Manejador de estados}
+
+Es cierto que \textit{Flutter}, para aplicaciones más simples permite \textit{manejar estados} directamente
+en la \textit{capa de presentación}, mediante la función \textit{setState()}\cite{flutterState}, sin embargo, para nuestra aplicación y otras soluciones de 
+gran envergadura y escalabilidad es importante establecer un 
+\textit{manejador de estados}, que esté presente en la capa de \textit{negocio}, que se encargue de:
+
+\begin{itemize}
+  \item[$\bullet$] Controlar todos los eventos presentes en el aplicativo 
+  para transformarlos en estados y transmitirlos a la capa de \textit{presentación}.
+  \item[$\bullet$] Obtener los datos sincronizados transmitidos por la capa de \textit{dominio}.
+\end{itemize}
+
+Dentro del gran abanico de librerías e implementaciones que ofrece \textit{Flutter} se ha optado por, como se puede 
+visualizar en la Figura~\ref{fig:architecture1}, los 
+patrones de diseño:
+
+\begin{itemize}
+  \item[$\bullet$] \textbf{Provider}: usado para la \textit{inyección de dependencias} directamente en la capa
+  de \textit{presentación} transmitiendo estados a la misma. 
+  \item[$\bullet$] \textbf{Patrón BLoC}: empleado para centralizar los cambios de estado, recibiendo \textit{eventos}
+   de la capa de \textit{presentación} y transmitiendo \textit{estados} que cambien los componentes de la misma.
+\end{itemize}
+
+En la práctica, se empleará la combinación de ambos patrones mediante el paquete \textit{flutter\_bloc}, 
+donde se podrán visualizar algunos ejemplos de uso en el siguiente capítulo de \textit{Desarrollo de la solución}.

@@ -1,9 +1,15 @@
 \documentclass[11pt,spanish,listoffigures,listoftables]{tfgetsinf}
 
 \usepackage[utf8]{inputenc}
-\usepackage{tikz,pgfgantt,graphicx,subcaption,float,fourier,array,makecell,pifont,amsmath,titz-uml}
+\usepackage{tikz,pgfgantt,graphicx,subcaption,float,fourier,array,makecell,pifont,amsmath,titz-uml,rotating,titlesec}
 
-\usetikzlibrary{chains,positioning,shadows,babel}
+\usetikzlibrary{chains,positioning,shadows,babel,trees}
+
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
 
 %% INFO
 
@@ -15,9 +21,9 @@ para la creación y resolución de nonogramas}
 
 %% KEYWORDS
 
-\keywords{????, ?????????, ????, ?????????????????}
-         {?????, ???, ???????????????}   
-         {?????, ????? ?????, ?????????????}
+\keywords{WIP}
+         {WIP}   
+         {WIP}
 
 %% BEGIN
 
@@ -26,13 +32,13 @@ para la creación y resolución de nonogramas}
 %% SUMMARIES
 
 \begin{abstract}[spanish]
-????
+WIP
 \end{abstract}
 \begin{abstract}[catalan]
-   ????
+WIP
 \end{abstract}
 \begin{abstract}[english]
-????
+WIP
 \end{abstract}
 
 \mainmatter
@@ -45,11 +51,7 @@ para la creación y resolución de nonogramas}
 
 \input{chapters/chapter3}
 
-%% CONCLUSION
-
-\chapter{Conclusiones}
-
-????? ????????????? ????????????? ????????????? ????????????? ????????????? 
+\input{chapters/chapter4}
 
 %% BIBLIOGRAPHY
 %https://stackify.com/what-is-sdlc/
@@ -65,88 +67,15 @@ para la creación y resolución de nonogramas}
 %https://riunet.upv.es/bitstream/handle/10251/69088/FRESNEDA%20-%20Aplicación%20de%20patrones%20de%20diseño%20para%20la%20resolución%20de%20problemas%20de%20software%20en%20el%20des....pdf?sequence=2&isAllowed=y
 
 % \end{thebibliography}
-\bibliographystyle{ieeetr}
+\bibliographystyle{IEEEtranS}
 \bibliography{bibliography.bib}
 \cleardoublepage
 
 %% APPENDIX
 
-\APPENDIX
+% \APPENDIX
 
-\chapter{Diagrama de Gantt del proyecto}
-\label{chap:A1}
-
-En el siguiente apéndice se puede observar una evolución de las distintas fases que conforman el proyecto dividas en semanas,
-cada una de las fases refleja su tiempo estimado y el tiempo original desde su inicio hasta su finalización.
-
-\definecolor{barblue}{RGB}{153,204,254}
-\definecolor{groupblue}{RGB}{51,102,254}
-\definecolor{linkred}{RGB}{165,0,33}
-\renewcommand\sfdefault{phv}
-\renewcommand\mddefault{mc}
-\renewcommand\bfdefault{bc}
-\setganttlinklabel{s-s}{START-TO-START}
-\setganttlinklabel{f-s}{FINISH-TO-START}
-\setganttlinklabel{f-f}{FINISH-TO-FINISH}
-\begin{ganttchart}[
-    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
-    hgrid style/.style={draw=black!5, line width=.75pt},
-    vgrid={*1{draw=black!5, line width=.75pt}},
-    today=7,
-    today rule/.style={
-      draw=black!64,
-      dash pattern=on 3.5pt off 4.5pt,
-      line width=1.5pt
-    },
-    today label font=\small\bfseries,
-    title/.style={draw=none, fill=none},
-    title label font=\bfseries\footnotesize,
-    title label node/.append style={below=7pt},
-    include title in canvas=false,
-    bar label font=\mdseries\small\color{black!70},
-    bar label node/.append style={left=2cm},
-    bar/.append style={draw=none, fill=black!63},
-    bar incomplete/.append style={fill=barblue},
-    bar progress label font=\mdseries\footnotesize\color{black!70},
-    group incomplete/.append style={fill=groupblue},
-    group left shift=0,
-    group right shift=0,
-    group height=.5,
-    group peaks tip position=0,
-    group label node/.append style={left=.6cm},
-    group progress label font=\bfseries\small,
-    link/.style={-latex, line width=1.5pt, linkred},
-    link label font=\scriptsize\bfseries,
-    link label node/.append style={below left=-2pt and 0pt}
-  ]{1}{13}
-  \gantttitle[
-    title label node/.append style={below left=7pt and -3pt}
-  ]{WEEKS:\quad1}{1}
-  \gantttitlelist{2,...,13}{1} \\
-  \ganttgroup[progress=57]{WBS 1 Summary Element 1}{1}{10} \\
-  \ganttbar[
-    progress=75,
-    name=WBS1A
-  ]{\textbf{WBS 1.1} Activity A}{1}{8} \\
-  \ganttbar[
-    progress=67,
-    name=WBS1B
-  ]{\textbf{WBS 1.2} Activity B}{1}{3} \\
-  \ganttbar[
-    progress=50,
-    name=WBS1C
-  ]{\textbf{WBS 1.3} Activity C}{4}{10} \\
-  \ganttbar[
-    progress=0,
-    name=WBS1D
-  ]{\textbf{WBS 1.4} Activity D}{4}{10} \\[grid]
-  \ganttgroup[progress=0]{WBS 2 Summary Element 2}{4}{10} \\
-  \ganttbar[progress=0]{\textbf{WBS 2.1} Activity E}{4}{5} \\
-  \ganttbar[progress=0]{\textbf{WBS 2.2} Activity F}{6}{8} \\
-  \ganttbar[progress=0]{\textbf{WBS 2.3} Activity G}{9}{10}
-  {WBS1C}{WBS1D}
-\end{ganttchart}
-
+% \input{appendixes/appendix1}
 %% END
 
 \end{document}

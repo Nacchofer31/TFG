@@ -219,7 +219,7 @@ Por otra parte, los términos técnicos que componen el sistema son los que sigu
 
     % bent association
   \end{tikzpicture}
-  \caption{Diagrama de Contexto del aplicativo}
+  \caption{Diagrama de contexto del aplicativo}
    \label{fig:dom2}
 \end{figure}
 
@@ -253,7 +253,99 @@ al usuario, vistos en la Tabla ~\ref{fig:table7}.
 \end{table}
 
 \subsection{Características del Sistema}
-Una vez vistas las limitaciones y restricciones del sistema, se pueden analizar las características finales a incorporar en la aplicación.
+Una vez vistas las limitaciones y restricciones del sistema, se pueden analizar las características finales 
+a incorporar en la aplicación, mediante \textit{casos de uso}.
 
+\subsubsection{Casos de uso principales}
 
+Estos, son los que se encontrarán en la \textit{Pantalla Principal} y \textit{Pantalla de Seleción de Nonogramas} 
+del aplicativo.
 
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \begin{umlsystem}[x=5, fill=black!10]{Aplicativo} 
+    \umlusecase[name = usecase1, width=2cm]{Jugar nivel}
+    \umlusecase[name = usecase2, x=6,width=2cm]{Seleccionar nivel}
+    \umlusecase[name = usecase3, x=4, y=-2, width=2cm]{Acceder Tutorial} 
+    \umlusecase[name = usecase4, y=-5]{Acceder a Online}
+    \umlusecase[name = usecase5, x=6, y=-4, width=2cm]{Publicar nonograma}
+    \umlusecase[name = usecase6, x=6, y=-6, width=2cm]{Resolver nivel online}
+    \umlusecase[name = usecase7, y=-3]{Acceder a Ajustes}
+    \end{umlsystem}
+    \umlactor[y=-1]{Usuario}
+    \umlactor[y=-4]{Usuario Registrado} 
+    \umlinherit{Usuario Registrado}{Usuario}
+
+    \umlinclude[]{usecase1}{usecase2}
+    \umlassoc[]{Usuario}{usecase1}
+    \umlassoc[]{Usuario Registrado}{usecase4}
+    \umlinclude[]{usecase4}{usecase5}
+    \umlinclude[]{usecase4}{usecase6}
+    \umlassoc[]{Usuario}{usecase3}
+    \umlassoc[]{Usuario}{usecase7}
+
+\end{tikzpicture}
+\caption{Diagrama de casos de usos principales}
+\label{fig:caso1}
+\end{figure}
+
+\subsubsection{Casos de uso de resolución de nivel}
+
+Estarán disponibles en la pantalla de resolución de nivel.
+
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \begin{umlsystem}[x=5, fill=black!10]{Aplicativo} 
+    \umlusecase[name = usecase4, y=-4]{Jugar nonograma}
+    \umlusecase[name = usecase5, x=7, y=-3, width=2cm]{Superar nivel}
+    \umlusecase[name = usecase6, x=4, y=-6]{Perder nivel}
+    \umlusecase[name = usecase7, y=-6, width=1.5cm]{Cargar progreso}
+    \umlusecase[name = usecase8, y=-2, width=1.5cm]{Salir del nivel}
+    \umlusecase[name = usecase9, y=-2, x=5, width=1.5cm]{Guardar progreso}
+    \end{umlsystem}
+    \umlactor[y=-4]{Usuario} 
+
+    \umlassoc[]{Usuario Registrado}{usecase4}
+    \umlVHextend[]{usecase5}{usecase4}
+    \umlVHextend[]{usecase6}{usecase4}
+    \umlinclude[]{usecase4}{usecase7}
+    \umlinclude[]{usecase4}{usecase8}
+    \umlVHextend[]{usecase9}{usecase8}
+
+\end{tikzpicture}
+\caption{Diagrama de casos de usos en pantalla de resolución de nivel}
+\label{fig:caso2}
+\end{figure}
+
+\subsubsection{Casos de uso de ajustes}
+
+Casos de uso visibles en la \textit{Pantalla de Ajustes} del sistema.
+
+\begin{figure}[H]
+  \centering
+\begin{tikzpicture}
+  \begin{umlsystem}[x=5, fill=black!10]{Aplicativo} 
+    \umlusecase[name = usecase1]{Cambiar tema}
+    \umlusecase[name = usecase3, x=4, y=-1, width=2cm]{Seleccionar vidas} 
+    \umlusecase[name = usecase4, x=1, y=-6]{Cerrar sesión}
+    \umlusecase[name = usecase5, x=3, y=-5]{Sincronizar datos}
+    \umlusecase[name = usecase6, x=4, y=-3, width= 2.5cm]{Seleccionar auto-guardado}
+    \umlusecase[name = usecase7, y=-3.5]{Borrar datos}
+    \end{umlsystem}
+    \umlactor[y=-1]{Usuario}
+    \umlactor[y=-4]{Usuario Registrado} 
+    \umlinherit{Usuario Registrado}{Usuario}
+
+    \umlassoc[]{Usuario}{usecase1}
+    \umlassoc[]{Usuario Registrado}{usecase4}
+    \umlassoc[]{Usuario Registrado}{usecase5}
+    \umlassoc[]{Usuario}{usecase3}
+    \umlassoc[]{Usuario}{usecase6}
+    \umlassoc[]{Usuario}{usecase7}
+
+\end{tikzpicture}
+\caption{Diagrama de casos de ajustes}
+\label{fig:caso1}
+\end{figure}
