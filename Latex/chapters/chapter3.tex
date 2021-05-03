@@ -24,7 +24,7 @@ En el cual, el usuario hará uso de sus servicios propios y \textit{en nube} tal
 sincronización.
 
 \subsection{Terminología}
-Los términos relacionados con la ontología del sistema se ven enumerados y descritos por la Tabla~\ref{fig:table2}.
+Los términos relacionados con la ontología del sistema se ven enumerados y descritos por la Tabla~\ref{fig:glo2}.
 
 \begin{table}[H]
   \caption{Glosario de términos ontológicos del aplicativo}
@@ -41,7 +41,7 @@ Los términos relacionados con la ontología del sistema se ven enumerados y des
       \makecell{Progreso} &  \makecell{Datos relacionados con la persistencia de la resolución de un nivel} \\
       \hline
     \end{tabular}
-    \label{fig:table2}
+    \label{fig:glo2}
 \end{table}
 
 Por otra parte, los términos técnicos que componen el sistema son los que siguen:
@@ -64,7 +64,7 @@ Por otra parte, los términos técnicos que componen el sistema son los que sigu
         \hline
         
       \end{tabular}
-      \label{fig:table3}
+      \label{fig:table2}
   \end{table}
 
   \subsection{Modelo de Dominio}
@@ -75,8 +75,8 @@ Por otra parte, los términos técnicos que componen el sistema son los que sigu
     \centering
   \begin{tikzpicture}
     \begin{umlpackage}[fill=black!10]{Sistema}
-      \umlclass[x=1,y=1]{Usuario}{uid : string \\ nombreUsuario : string? \\ email : string? \\ numCompletados : int}{}
-      \umlclass[x=2,y=-3.8]{Nivel}{uid : string \\ fechaPub : datetime? \\ figura : string \\ vidas : int}{}
+      \umlclass[x=1,y=1]{Usuario}{uuid : string \\ nombreUsuario : string? \\ email : string? \\ numCompletados : int}{}
+      \umlclass[x=2,y=-3.8]{Nivel}{uuid : string \\ fechaPub : datetime? \\ figura : string \\ vidas : int}{}
       \umlclass[x=9,y=-3.8]{Nonograma}{  width : int \\ height : int \\ celdasCorrectas : List<int>}{}
       \umlclass[x=8,y=1]{<<data>> Progreso}{id : int \\ completado : int \\ celdasMarcadas : string? \\ celdasDescartadas : string? \\ vidas : int}{}
     \end{umlpackage}
@@ -108,7 +108,7 @@ Por otra parte, los términos técnicos que componen el sistema son los que sigu
         \hline
         \thead{Atributos de Usuario} & \thead{Descripción} \\
         \hline
-        \makecell{uid\\\textit{\textit{string}}} & \makecell{Cadena de caracteres único que identifica al usuario a \\nivel interno}\\
+        \makecell{uuid\\\textit{\textit{string}}} & \makecell{Cadena de caracteres único que identifica al usuario a \\nivel interno}\\
         \hline
         \makecell{nombre de Usuario\\\textit{string?}} & Pseudónimo único a elegir por el usuario en el sistema \\
         \hline
@@ -129,7 +129,7 @@ Por otra parte, los términos técnicos que componen el sistema son los que sigu
         \hline
         \thead{Atributos de Nivel} & \thead{Descripción} \\
         \hline
-        \makecell{uid\\\textit{\textit{string}}} & \makecell{Cadena de caracteres único que identifica al nivel}\\
+        \makecell{uuid\\\textit{\textit{string}}} & \makecell{Cadena de caracteres único que identifica al nivel}\\
         \hline
         \makecell{fecha de Publicación\\\textit{dateTime?}} & Fecha de creación del nonograma en caso de llegar a publicarse \\
         \hline
@@ -265,13 +265,13 @@ del aplicativo.
   \centering
 \begin{tikzpicture}
   \begin{umlsystem}[x=5, fill=black!10]{Aplicativo} 
-    \umlusecase[name = usecase1, width=2cm]{Jugar nivel}
-    \umlusecase[name = usecase2, x=6,width=2cm]{Seleccionar nivel}
-    \umlusecase[name = usecase3, x=4, y=-2, width=2cm]{Acceder Tutorial} 
-    \umlusecase[name = usecase4, y=-5]{Acceder a Online}
-    \umlusecase[name = usecase5, x=6, y=-4, width=2cm]{Publicar nonograma}
-    \umlusecase[name = usecase6, x=6, y=-6, width=2cm]{Resolver nivel online}
-    \umlusecase[name = usecase7, y=-3]{Acceder a Ajustes}
+    \umlusecase[name = usecase1, width=2cm]{Jugar nivel \textbf{R01}}
+    \umlusecase[name = usecase2, x=6,width=2.4cm]{Seleccionar nivel clásico \textbf{R05}}
+    \umlusecase[name = usecase3, x=4, y=-2, width=2cm]{Acceder Tutorial \textbf{R02}} 
+    \umlusecase[name = usecase4, y=-5]{Acceder a En Línea \textbf{R03}}
+    \umlusecase[name = usecase5, x=6, y=-4, width=2cm]{Publicar nonograma \textbf{R06}}
+    \umlusecase[name = usecase6, x=6, y=-5.5, width=3cm]{Resolver nivel online \textbf{R07}}
+    \umlusecase[name = usecase7, y=-3]{Acceder a Ajustes \textbf{R04}}
     \end{umlsystem}
     \umlactor[y=-1]{Usuario}
     \umlactor[y=-4]{Usuario Registrado} 
@@ -298,12 +298,12 @@ Estarán disponibles en la pantalla de resolución de nivel.
   \centering
 \begin{tikzpicture}
   \begin{umlsystem}[x=5, fill=black!10]{Aplicativo} 
-    \umlusecase[name = usecase4, y=-4]{Jugar nonograma}
-    \umlusecase[name = usecase5, x=7, y=-3, width=2cm]{Superar nivel}
-    \umlusecase[name = usecase6, x=4, y=-6]{Perder nivel}
-    \umlusecase[name = usecase7, y=-6, width=1.5cm]{Cargar progreso}
-    \umlusecase[name = usecase8, y=-2, width=1.5cm]{Salir del nivel}
-    \umlusecase[name = usecase9, y=-2, x=5, width=1.5cm]{Guardar progreso}
+    \umlusecase[name = usecase4, y=-4]{Jugar nonograma \textbf{R08}}
+    \umlusecase[name = usecase5, x=7, y=-3, width=2cm]{Superar nivel \textbf{R09}}
+    \umlusecase[name = usecase6, x=4, y=-6]{Perder nivel \textbf{R10}}
+    \umlusecase[name = usecase7, y=-6, width=1.5cm]{Cargar progreso \textbf{R11}}
+    \umlusecase[name = usecase8, y=-2, width=1.5cm]{Salir del nivel \textbf{R12}}
+    \umlusecase[name = usecase9, y=-2, x=4, width=1.5cm]{Guardar progreso \textbf{R13}}
     \end{umlsystem}
     \umlactor[y=-4]{Usuario} 
 
@@ -327,15 +327,17 @@ Casos de uso visibles en la \textit{Pantalla de Ajustes} del sistema.
   \centering
 \begin{tikzpicture}
   \begin{umlsystem}[x=5, fill=black!10]{Aplicativo} 
-    \umlusecase[name = usecase1]{Cambiar tema}
-    \umlusecase[name = usecase3, x=4, y=-1, width=2cm]{Seleccionar vidas} 
-    \umlusecase[name = usecase4, x=1, y=-6]{Cerrar sesión}
-    \umlusecase[name = usecase5, x=3, y=-5]{Sincronizar datos}
-    \umlusecase[name = usecase6, x=4, y=-3, width= 2.5cm]{Seleccionar auto-guardado}
-    \umlusecase[name = usecase7, y=-3.5]{Borrar datos}
+    \umlusecase[name = usecase1, x=-1]{Cambiar tema \textbf{R14}}
+    \umlusecase[name = usecase3, x=4, y=-0.5, width=2cm]{Seleccionar vidas \textbf{R15}}
+    \umlusecase[name = usecase9, x=1, y=-1.4, width=2cm]{Iniciar sesión \textbf{R16}} 
+    \umlusecase[name = usecase4, x=1, y=-6]{Cerrar sesión \textbf{R20}}
+    \umlusecase[name = usecase5, x=3, y=-5]{Sincronizar datos \textbf{R21}}
+    \umlusecase[name = usecase6, x=4, y=-3, width= 2.5cm]{Seleccionar auto-guardado \textbf{R17}}
+    \umlusecase[name = usecase7, y=-3]{Borrar datos \textbf{R18}}
+    \umlusecase[name = usecase8, x=-1, y=-3.8]{Seleccionar idioma \textbf{R19}}
     \end{umlsystem}
-    \umlactor[y=-1]{Usuario}
-    \umlactor[y=-4]{Usuario Registrado} 
+    \umlactor[y=-1,x=-1]{Usuario}
+    \umlactor[y=-4, x=-1]{Usuario Registrado} 
     \umlinherit{Usuario Registrado}{Usuario}
 
     \umlassoc[]{Usuario}{usecase1}
@@ -344,8 +346,414 @@ Casos de uso visibles en la \textit{Pantalla de Ajustes} del sistema.
     \umlassoc[]{Usuario}{usecase3}
     \umlassoc[]{Usuario}{usecase6}
     \umlassoc[]{Usuario}{usecase7}
+    \umlassoc[]{Usuario}{usecase8}
+    \umlassoc[]{Usuario}{usecase9}
 
 \end{tikzpicture}
 \caption{Diagrama de casos de ajustes}
-\label{fig:caso1}
+\label{fig:caso3}
 \end{figure}
+
+\textit{Cada uno de los requisitos funcionales (RF) han sido numerados con un identificador \textbf{RXX}, los cuales se harán referencia
+en su especificación.}
+
+\subsection{Requisitos funcionales}
+
+Para evitar posibles inconsistencias a nivel de producto, se especificarán cada uno de los requisitos funcionales previamente 
+numerados, enumerando sus datos de entrada y salida, precondiciones, postcondiciones, flujos y criterios de aceptación.
+
+\medspace
+
+\newcommand\addrow[2]{#1 &#2\\ }
+
+\newcommand\addheading[2]{#1 &#2\\ \hline}
+\newcommand\tabularhead{\begin{tabular}{lp{9cm}}
+\hline
+}
+
+\newcommand\addmulrow[2]{ \begin{minipage}[t][][t]{4cm}#1\end{minipage}% 
+   &\begin{minipage}[t][][t]{8.5cm}
+    \begin{enumerate} #2   \end{enumerate}
+    \end{minipage}\\ }
+    
+
+\newenvironment{usecase}{\tabularhead}
+{\hline\end{tabular}}
+
+\begin{table}[H]
+\begin{usecase}
+  \addheading{Actor: \textbf{Usuario}}{\textbf{R1 - Jugar nivel}}
+  \addrow{Descripción}{Acceder al listado de niveles clásicos disponibles en el sistema}
+  \addrow{Precondiciones}{Ninguna}
+  \addrow{Entradas}{Ninguna}
+  \addrow{Salidas}{Listado de sensores predeterminados clásicos}
+  \addrow{Postcondiciones}{Se mostrará el listado de niveles}
+  \addmulrow{Flujo principal}{\item Presionar la sección Jugar
+                                   }
+                                  \addrow{}{}
+\end{usecase}
+\caption{Tabla de requisito funcional \textit{Jugar nivel}}
+\label{table:req1}
+\end{table}
+
+\begin{table}[H]
+  \begin{usecase}
+    \addheading{Actor: \textbf{Usuario}}{\textbf{R2 - Visualizar Tutorial}}
+    \addrow{Descripción}{Muestra el tutorial para familiarizar al usuario de las reglas de
+    la resolución de nonogramas}
+    \addrow{Precondiciones}{Ninguna}
+    \addrow{Entradas}{Ninguna}
+    \addrow{Salidas}{Listado de reglas y consejos}
+    \addrow{Postcondiciones}{Se mostrarán los consejos y reglas }
+    \addmulrow{Flujo principal}{\item Presionar la sección Tutorial
+    \item Deslizar el conjunto de consejos y reglas
+                                     }
+                                    \addrow{}{}
+  \end{usecase}
+  \caption{Tabla de requisito funcional \textit{Visualizar Tutorial}}
+  \label{table:req2}
+  \end{table}
+
+  \begin{table}[H]
+    \begin{usecase}
+      \addheading{Actor: \textbf{Usuario Registrado}}{\textbf{R3 - Acceder sección En Línea}}
+      \addrow{Descripción}{Muestra el conjunto de funciones en red}
+      \addrow{Precondiciones}{El usuario debe estar registrado }
+      \addrow{Entradas}{Número identificativo del usuario registrado}
+      \addrow{Salidas}{Listado de funcionalidades en línea}
+      \addrow{Postcondiciones}{Se mostrará el listado de funcionalidades }
+      \addmulrow{Flujo principal}{\item Presionar la sección En Línea
+                                       }
+                                      \addrow{}{}
+    \end{usecase}
+    \caption{Tabla de requisito funcional \textit{Acceder sección En Línea}}
+    \label{table:req3}
+    \end{table}
+
+    \begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R4 - Acceder sección Ajustes}}
+        \addrow{Descripción}{Muestra el conjunto de configuraciones propias del sistema}
+        \addrow{Precondiciones}{Ninguna}
+        \addrow{Entradas}{Ninguna}
+        \addrow{Salidas}{Listado de configuraciones}
+        \addrow{Postcondiciones}{Se mostrará el listado de configuraciones }
+        \addmulrow{Flujo principal}{\item Presionar la sección Ajustes
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Acceder sección Ajustes}}
+      \label{table:req4}
+      \end{table}
+  
+  \begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R5 - Seleccionar nivel clásico}}
+        \addrow{Descripción}{Permite seleccionar un nivel predeterminado del aplicativo}
+        \addrow{Precondiciones}{Ninguna}
+        \addrow{Entradas}{Ninguna}
+        \addrow{Salidas}{Listado de niveles predeterminados}
+        \addrow{Postcondiciones}{Se mostrará el listado de niveles }
+        \addmulrow{Flujo principal}{
+        \item Seleccionar un nivel del listado
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Seleccionar nivel clásico}}
+      \label{table:req5}
+      \end{table}
+
+  \begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario Registrado}}{\textbf{R6 - Publicar nonograma}}
+        \addrow{Descripción}{Permite crear un nonograma con características específicas}
+        \addrow{Precondiciones}{El usuario debe estar registrado}
+        \addrow{Entradas}{Nombre del nonograma, dimensiones, celdas correctas y nombre del autor}
+        \addrow{Salidas}{Nonograma creado y disponible en el listado de nonogramas en línea}
+        \addrow{Postcondiciones}{Se mostrará el listado de niveles }
+        \addmulrow{Flujo principal}{
+        \item Seleccionar la sección Crear nonograma
+        \item Establecer nombre y dimensiones del nonograma y autor
+        \item Seleccionar cada una de las celdas indicando que son correctas
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Publicar nonograma}}
+      \label{table:req6}
+      \end{table}
+
+  \begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario Registrado}}{\textbf{R7 - Resolver nivel online}}
+        \addrow{Descripción}{Permite descargar y resolver un nivel creado por el mismo
+        usuario o por la comunidad}
+        \addrow{Precondiciones}{El usuario debe estar registrado}
+        \addrow{Entradas}{Nonograma seleccionado}
+        \addrow{Salidas}{Nonograma descargado}
+        \addrow{Postcondiciones}{Se mostrará el nivel online a resolver}
+        \addmulrow{Flujo principal}{
+        \item Seleccionar un nivel del listado de niveles online
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Resolver nivel online}}
+      \label{table:req7}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R8 - Jugar nonograma}}
+        \addrow{Descripción}{Muestra la pantalla y permite la resolución del nonograma de forma
+        interactiva}
+        \addrow{Precondiciones}{Se debe haber seleccionado un nivel}
+        \addrow{Entradas}{Nivel seleccionado}
+        \addrow{Salidas}{Nonograma a resolver}
+        \addrow{Postcondiciones}{Se mostrará el nonograma a resolver}
+        \addmulrow{Flujo principal}{
+        \item Pulsar en las celdas para descubrir las celdas correctas y resolver el nonograma
+        \item Pulsar dos veces o mantener pulsado en las celdas para indicar
+        la celda como no correcta
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Jugar nonograma}}
+      \label{table:req8}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R9 - Superar nivel}}
+        \addrow{Descripción}{Muestra una pantalla de felicitación una vez resuelto el nonograma}
+        \addrow{Precondiciones}{Todas las celdas correctas del nonograma se deben haber seleccionado
+        y se debe disponer de vidas}
+        \addrow{Entradas}{Nivel seleccionado, celdas correctas y vidas}
+        \addrow{Salidas}{Nonograma descubierta}
+        \addrow{Postcondiciones}{Se mostrará una pantalla de felicitación y la información del nonograma
+        resuelto}
+        \addmulrow{Flujo principal}{
+        \item Pulsar sobre cada una de las celdas correctas del nonograma superando el nivel
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Superar nivel}}
+      \label{table:req9}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R10 - Perder nivel}}
+        \addrow{Descripción}{Muestra una pantalla indicando que has fallado en la resolución del nivel
+        y permite intentarlo de nuevo}
+        \addrow{Precondiciones}{El número de vidas especificado en ajustes debe ser finito y
+        durante el nivel el usuario debe haberse quedado sin vidas}
+        \addrow{Entradas}{Número de vidas}
+        \addrow{Salidas}{Opción intentar de nuevo}
+        \addrow{Postcondiciones}{Se mostrará una pantalla de repetir nivel}
+        \addmulrow{Flujo principal}{
+        \item Pulsar sobre celdas incorrectas hasta quedarse sin vidas
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Perder nivel}}
+      \label{table:req10}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R11 - Cargar progreso}}
+        \addrow{Descripción}{Muestra un pop-up permitiendo al usuario poder cargar el progreso
+        de la resolución del nivel}
+        \addrow{Precondiciones}{El nivel seleccionado para su resolución debe de haberse jugado
+        anteriormente y tener un progreso}
+        \addrow{Entradas}{Nivel específico y progreso del mismo}
+        \addrow{Salidas}{Último progreso de la resolución del nivel seleccionado}
+        \addrow{Postcondiciones}{Se mostrará la pantalla de resolución del nivel con
+        el último progreso guardado}
+        \addmulrow{Flujo principal}{
+        \item Pulsar sobre la opción cargar progreso en un nivel concreto
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Cargar progreso}}
+      \label{table:req11}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R12 - Salir del nivel}}
+        \addrow{Descripción}{Permite al usuario salir del nivel}
+        \addrow{Precondiciones}{El usuario debe de encontrarse en la pantalla de 
+        resolución de un nivel}
+        \addrow{Entradas}{Ninguna}
+        \addrow{Salidas}{Ninguna}
+        \addrow{Postcondiciones}{Se mostrará el listado de niveles}
+        \addmulrow{Flujo principal}{
+        \item Pulsar sobre la opción salir del nivel
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Salir del nivel}}
+      \label{table:req12}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R13 - Guardar progreso}}
+        \addrow{Descripción}{Permite al usuario guardar su progreso durante la resolución de un nivel}
+        \addrow{Precondiciones}{El usuario debe de encontrarse en la pantalla de 
+        resolución de un nivel y debe de haberse habilitado la opción Autoguardado en ajustes}
+        \addrow{Entradas}{Ninguna}
+        \addrow{Salidas}{Ninguna}
+        \addrow{Postcondiciones}{Se guardará el progreso del nivel}
+        \addmulrow{Flujo principal}{
+        \item Salir del nivel teniendo habilitada la opción de Autoguardado habilitada
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Guardar progreso}}
+      \label{table:req13}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R14 - Cambiar tema}}
+        \addrow{Descripción}{Concede al usuario la opción de elegir un tema visual dentro de los disponibles 
+        del sistema}
+        \addrow{Precondiciones}{Ninguna}
+        \addrow{Entradas}{Tema a elegir}
+        \addrow{Salidas}{Ninguna}
+        \addrow{Postcondiciones}{Se actualizará el tema global del sistema}
+        \addmulrow{Flujo principal}{
+        \item Seleccionar el tema a elegir mediante el botón Cambiar, eligiendo de forma dinámica la
+        combinación de colores
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Cambiar tema}}
+      \label{table:req14}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R15 - Seleccionar vidas}}
+        \addrow{Descripción}{Concede al usuario la opción de elegir el número de vidas disponibles durante la
+        resolución de un nivel}
+        \addrow{Precondiciones}{Ninguna}
+        \addrow{Entradas}{Número de vidas a elegir}
+        \addrow{Salidas}{Ninguna}
+        \addrow{Postcondiciones}{Se actualizará el número de vidas por defecto en la resolución de un nivel}
+        \addmulrow{Flujo principal}{
+        \item Seleccionar el número de vidas mediante el botón cambiar (de 1 a 5 vidas) o infinitas.
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Seleccionar vidas}}
+      \label{table:req15}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R16 - Iniciar sesión}}
+        \addrow{Descripción}{Permite al usuario registrarse en el caso de no estar registrado mediante una cuenta
+        de Google e identificarse dentro del aplicativo para acceder a las funciones online}
+        \addrow{Precondiciones}{Ninguna}
+        \addrow{Entradas}{Credenciales de Google}
+        \addrow{Salidas}{Ninguna}
+        \addrow{Postcondiciones}{Se actualizará la cuenta que ha iniciado sesión el usuario a nivel de sistema}
+        \addmulrow{Flujo principal}{
+        \item Seleccionar la opción de Ingresar en Cuenta de usuario
+        \item Presionar Iniciar sesión con Google
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Iniciar sesión}}
+      \label{table:req16}
+      \end{table}
+
+\begin{table}[H]
+      \begin{usecase}
+        \addheading{Actor: \textbf{Usuario}}{\textbf{R17 - Seleccionar autoguardado}}
+        \addrow{Descripción}{Permite al usuario elegir habilitar o deshabilitar la opción de autoguardado en la
+        resolución de niveles}
+        \addrow{Precondiciones}{Ninguna}
+        \addrow{Entradas}{Ninguna}
+        \addrow{Salidas}{Ninguna}
+        \addrow{Postcondiciones}{Se actualizará la opción de autoguardado en las preferencias del sistema}
+        \addmulrow{Flujo principal}{
+        \item Habilitar o deshabilitar la opción de autoguardado
+                                         }
+                                        \addrow{}{}
+      \end{usecase}
+      \caption{Tabla de requisito funcional \textit{Seleccionar autoguardado}}
+      \label{table:req17}
+      \end{table}
+
+\begin{table}[H]
+  \begin{usecase}
+    \addheading{Actor: \textbf{Usuario}}{\textbf{R18 - Borrar datos}}
+    \addrow{Descripción}{Borra el progreso de todos los niveles jugados}
+    \addrow{Precondiciones}{Ninguna}
+    \addrow{Entradas}{Ninguna}
+    \addrow{Salidas}{Ninguna}
+    \addrow{Postcondiciones}{Se debe de perder el progreso de todos los niveles jugados}
+    \addmulrow{Flujo principal}{
+    \item Presionar la opción borrar en la sección borrar progreso
+                                      }
+                                    \addrow{}{}
+  \end{usecase}
+  \caption{Tabla de requisito funcional \textit{Borrar datos}}
+  \label{table:req18}
+  \end{table}
+
+\begin{table}[H]
+  \begin{usecase}
+    \addheading{Actor: \textbf{Usuario}}{\textbf{R19 - Seleccionar idioma}}
+    \addrow{Descripción}{Cambia el idioma global del aplicativo}
+    \addrow{Precondiciones}{Ninguna}
+    \addrow{Entradas}{Ninguna}
+    \addrow{Salidas}{Ninguna}
+    \addrow{Postcondiciones}{Se debe de perder el progreso de todos los niveles jugados}
+    \addmulrow{Flujo principal}{
+    \item Presionar la opción cambiar, seleccionando el idioma deseado
+                                      }
+                                    \addrow{}{}
+  \end{usecase}
+  \caption{Tabla de requisito funcional \textit{Seleccionar idioma}}
+  \label{table:req19}
+  \end{table}
+
+\begin{table}[H]
+  \begin{usecase}
+    \addheading{Actor: \textbf{Usuario Registrado}}{\textbf{R20 - Cerrar sesión}}
+    \addrow{Descripción}{Cierra sesión del usuario, cambiando los datos del jugador a nivel global del
+    aplicativo }
+    \addrow{Precondiciones}{El usuario debe estar registrado}
+    \addrow{Entradas}{Ninguna}
+    \addrow{Salidas}{Ninguna}
+    \addrow{Postcondiciones}{Mostrar al usuario que su sesión ha sido finalizada}
+    \addmulrow{Flujo principal}{
+    \item Presionar en Ingresar en el apartado Cuenta de usuario
+    \item Presionar en Finalizar sesión con Google
+                                      }
+                                    \addrow{}{}
+  \end{usecase}
+  \caption{Tabla de requisito funcional \textit{Cerrar sesión}}
+  \label{table:req20}
+  \end{table}
+
+\begin{table}[H]
+  \begin{usecase}
+    \addheading{Actor: \textbf{Usuario}}{\textbf{R21 - Sincronizar datos}}
+    \addrow{Descripción}{Guarda el progreso de los niveles clásicos mediante el servicio en nube}
+    \addrow{Precondiciones}{El usuario debe estar registrado}
+    \addrow{Entradas}{Ninguna}
+    \addrow{Salidas}{Ninguna}
+    \addrow{Postcondiciones}{Mostrar un popup indicando que los datos han sido sincronizados}
+    \addmulrow{Flujo principal}{
+    \item Presionar la Sincronizar
+                                      }
+                                    \addrow{}{}
+  \end{usecase}
+  \caption{Tabla de requisito funcional \textit{Sincronizar datos}}
+  \label{table:req21}
+  \end{table}
