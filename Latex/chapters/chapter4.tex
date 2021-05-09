@@ -127,9 +127,9 @@ además de estar mejor optimizado para labores de \textit{compilación y depurac
 Se empleará \textit{GitHub} para el \textit{control de versiones}, siguiendo la metodología propias de 
 \textit{GitFlow}, en el que tendremos, como se puede visualizar en la Figura~\ref{fig:gitflow1}:
 i) una rama \textit{master} para versiones finales del aplicativo,
-ii) una rama \textit{develop} en la que aunar y testar las funcionalidades desarrolladas y iii) las ramas
-\textit{feature} que se crearán por cada caso de uso a desarrollar, dividida por todas las capas propuestas
-por la filosofía de desarrollado \textit{Clean Architectute}, junto a sus \textit{suites de tests}.
+ii) una rama \textit{develop} en la que aunar las funcionalidades desarrolladas y iii) las ramas
+\textit{feature} que se crearán por cada funcionalidad a desarrollar, dividida por todas las capas propuestas
+por la filosofía \textit{Clean Architectute}, junto a sus \textit{suites de tests}.
 
 \begin{figure}[H]
     \centering
@@ -193,7 +193,7 @@ A continuación, se comentará la funcionalidad de cada una de las capas, en la 
       \makecell{Capa de \\ presentación} &  \makecell{Mediante \textit{widgets} se presentarán todas las vistas
       y componentes\\ que contiene el aplicativo.} \\
       \hline
-      \makecell{Capa de \\ negocio} &   \makecell{A partir de \textit{manejadores de estados} se controlarán todos los \\ cambios de
+      \makecell{Capa de \\ lógica} &   \makecell{A partir de \textit{manejadores de estados} se controlarán todos los \\ cambios de
       estado presentes en la capa de \textit{presentación}.} \\
       \hline
       \makecell{Capa de \\ dominio} &  \makecell{Las interfaces \textit{repositorio} servirán de esqueleto \\ para las clases relacionadas con
@@ -209,7 +209,7 @@ A continuación, se comentará la funcionalidad de cada una de las capas, en la 
 Adicionalmente, justo a este modelo de capas se adoptará
 la arquitectura \textit{Clean Arquitecture} y la metodología de desarrollo quiado
 por pruebas \textit{TDD}, práctica cada vez más vista en proyectos extensos y de gran escalabilidad ~\cite{9071367}.
-La combinación de estas dos praxis, permitirán modularizar al máximo los casos de uso del sistema, haciéndolos más
+La combinación de estas dos praxis, permitirán modularizar al máximo las funcionalidades del sistema, haciéndolos más
 reutilizables y fáciles de monitorizar en las tareas de identificación de errores y rendimiento.
 
 \subsection{Manejador de estados}
@@ -221,7 +221,7 @@ en la \textit{capa de presentación}, mediante la función \textit{setState()}\c
 Sin embargo, para nuestra aplicación u otras soluciones de gran envergadura esta tarea puede resultar muy compleja,
 además de ser totalmente opuesta a la modulabilidad y reusabilidad que ofrece la arquitectura \textit{Clean Architecture}.
 Por ello, se hacen necsearios patrones de diseño que actúen como
-\textit{manejadores de estados}, que esté presente en la capa de \textit{negocio} y que se encarguem de:
+\textit{manejadores de estados}, que esté presente en la capa de \textit{lógica} y que se encarguen de:
 
 \begin{itemize}
   \item[$\bullet$] Controlar todos los eventos presentes en el aplicativo 
@@ -237,7 +237,7 @@ visualizar en la Figura~\ref{fig:architecture1}, la combinación de los siguient
    de la capa de \textit{presentación} y transmitir \textit{estados} que cambien de forma dinámica los componentes de
     la misma.
   \item[$\bullet$] \textbf{Provider}: nos permitirá, como su nombre indica, proveer de funcionalidades propias
-  de la capa de negocio, como la lógica de los BLoCs a la \textit{capa de presentación}.
+  de la capa de lógica, como la lógica de los BLoCs a la \textit{capa de presentación}.
 \end{itemize}
 
 Esta combinación de patrones se incluirá en el aplicativo mediante el paquete \textit{flutter\_bloc}.
