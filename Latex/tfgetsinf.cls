@@ -176,29 +176,35 @@
 
 \RequirePackage{listings}
 
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95, 0.95, 0.96}
 
-\lstset{%
-	frame=single,
-	basicstyle=\small,
-	flexiblecolumns=true,
-	keywordstyle=\color{blue},
-	commentstyle=\color{dkgreen}, 
-	stringstyle=\color{mauve},
-	numberstyle=\tiny\color{gray},
-	language=Java,
-	breaklines=true,
-	breakatwhitespace=true,
-	morekeywords={*,num,String,var,library,get,set} ,
+\lstset{
+     backgroundcolor=\color{backcolour},   
+     commentstyle=\color{codegray},
+     keywordstyle=\color{magenta},
+     numberstyle=\tiny\color{codegray},
+     stringstyle=\color{codepurple},
+     basicstyle=\ttfamily\footnotesize,
+     language=Java,
+     breakatwhitespace=false,         
+     breaklines=true,                 
+     captionpos=b,                    
+     keepspaces=true,                                
+     showspaces=false,                
+     showstringspaces=false,
+     showtabs=false,                  
+     tabsize=2,
+    %frame=shadowbox
 }
 
 % Define the code emph rules
 \lstset{
-emph=[1]{var, final, late, return, child, children},% Insert here the types you are using
+emph=[1]{async, throw, Either, this, var, final, UseCase, super, late, return, child, children, BlocProvider, ThemeManager},% Insert here the types you are using
 emphstyle=[1]{\color{dkgreen}},
-emph=[2]{builder, BuildContext, bool, Widget, class, extends, implements},% Insert here the methods you are using
+emph=[2]{Stream, await, String, Left, Right, int, List, required, abstract, part, of, builder, BuildContext, bool, Widget, class, extends, implements, import},% Insert here the methods you are using
 emphstyle=[2]{\color{mauve}},%
 emph=[3]{@override},% Insert here the methods you are using
 emphstyle=[3]{\color{gray}}%

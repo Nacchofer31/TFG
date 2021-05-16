@@ -1,12 +1,19 @@
 \chapter{Fragmentos de código}
+\label{cap:anexo2}
+\textit{La intención de este anexo es la de mostrar algunos ejemplos de código extraídos del 
+resultado de la fase de codificación, con el fin de ofrecer un mayor entendimiento de
+los pasos realizados para cada una de las funcionalidades desarrolladas.
+}
 
 \section{Código de Pantalla de Resolución de Nivel}
 
 \label{cap:anexo1-1}
 
-Este apartado muestra la codificación de la página de la \textit{feature} de Resolución de nivel, (\textit{play\_game}).
+Este apartado muestra la codificación de la página de la funcionalidad Resolución de nivel, 
+(\textit{play\_game\_page.dart}).
 
-\begin{lstlisting}[language=Java]
+
+\begin{lstlisting}
 
     import 'package:flutter/material.dart';
     import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,8 +31,7 @@ Este apartado muestra la codificación de la página de la \textit{feature} de R
         return Scaffold(
             appBar: InformationBar(
               mainColor: colorSet.primaryColor,
-              sideColor: colorSet.secondaryColor,
-            ),
+              sideColor: colorSet.secondaryColor),
             backgroundColor: colorSet.primaryColor,
             body: SafeArea(
                 child: InteractiveViewer(
@@ -42,3 +48,313 @@ Este apartado muestra la codificación de la página de la \textit{feature} de R
     }
     
     \end{lstlisting}
+
+    \section{Código de Capa de Lógica de Niveles En Línea}
+
+    \label{cap:anexo1-2}
+    
+    El siguiente apartado contiene la codificación de las entidades, repositorios y casos de uso de la 
+    funcionalidad \textit{Niveles en Línea}, (\textit{nonolist\_bloc.dart, nonolist\_state.dart y nonolist\_event.dart}).
+    
+    \begin{lstlisting}
+    
+    part of 'nonolist_bloc.dart';
+
+    abstract class NonoListState {}
+    
+    class LoadNonoListInitialState extends NonoListState {}
+    
+    class LoadedNonoListState extends NonoListState {
+      final List<Nonogram> nonograms;
+    
+      LoadedNonoListState({required this.nonograms});
+    }
+    
+    class FailedNonoListState extends NonoListState {
+      final String errorMessage;
+    
+      FailedNonoListState({required this.errorMessage});
+    }
+    
+    class LoadingNonoListState extends NonoListState {}
+    \end{lstlisting}
+
+    \begin{lstlisting}
+
+    part of 'nonolist_bloc.dart';
+
+    abstract class NonoListEvent {}
+    
+    class LoadNonoListEvent extends NonoListEvent {
+      final String uid;
+    
+      LoadNonoListEvent({required this.uid});
+    }
+    
+    class RefreshNonoListEvent extends NonoListEvent {}
+    \end{lstlisting}
+
+    \begin{lstlisting}
+
+    import 'dart:async';
+    import 'package:bloc/bloc.dart';
+    import 'package:meta/meta.dart';
+    
+    import '../../../../core/usecase/usecase.dart';
+    import '../../domain/entities/nonogram.dart';
+    import '../../domain/usecases/get_online_nonograms_use_case.dart';
+    part 'nonolist_event.dart';
+    part 'nonolist_state.dart';
+    
+    class NonoListBloc extends Bloc<NonoListEvent, NonoListState> {
+      NonoListBloc({required this.getNonoListUseCase}) : super(LoadNonoListEvent());
+    
+      final GetNonoListUseCase getNonoListUseCase;
+    
+      @override
+      Stream<NonoListState> mapEventToState(
+        NonoListEvent event,
+      ) async* {
+
+        if (event is LoadNonoListEvent) {
+          final data = await getNonoListUseCase.call(event.uid);
+            yield data.fold(
+              (left) => FailedNonoListState(errorMessage: left),
+              (right) => FailedNonoListState(nonograms: right));
+        }
+        if (event is RefreshNonoListEvent) {
+          bloc.add(LoadNonoListEvent(event.uid));
+        }
+      }
+    }
+    \end{lstlisting}
+
+    \section{Código de Capa de Dominio de Niveles En Línea}
+
+    \label{cap:anexo1-3}
+    
+    Este apartado contiene la codificación de las entidades, repositorios y casos de uso de la 
+    funcionalidad \textit{Niveles en Línea}, (\textit{get\_nonolist\_use\_case.dart}, \textit{nonogram.dart} y \textit{nonolist\_repository.dart}).
+    
+    \begin{lstlisting}
+    
+    import 'package:dartz/dartz.dart';
+
+    import '../../../../core/error/failures.dart';
+    import '../../../../core/usecase/usecase.dart';
+    import '../entities/nonogram.dart';
+    import '../repositories/nonolist_repository.dart';
+
+    class GetNonoListUseCase extends UseCase<List<Nonogram>, 
+      GetNonoListUseCaseParams> {
+      final NonoListRepository repository;
+
+      GetNonoListUseCase({required this.repository});
+      @override
+      Future<Either<Failure, List<Nonogram>>> call
+      (GetNonoListUseCaseParams params) async {
+        return await repository.getNonoList();
+      }
+    }
+
+    class GetNonoListUseCaseParams extends Equatable {
+      final String uid;
+
+      GetNonoListUseCaseParams({required this.uid});
+
+      @override
+      List<Object?> get props => [uid];
+    }
+
+    \end{lstlisting}
+
+    \begin{lstlisting}
+    
+    import 'package:dartz/dartz.dart';
+
+    import '../../../../core/error/failures.dart';
+    import '../entities/nonogram.dart';
+    
+    abstract class NonoListRepository {
+      Future<Either<Failure, List<Nonogram>>> getNonoList();
+    }
+      
+    \end{lstlisting}
+
+    \pagebreak
+
+    \begin{lstlisting}
+
+    class Nonogram extends Equatable {
+      Nonogram({this.id,
+        this.solved,
+        this.name,
+        this.publishDate,
+        this.userId,
+        this.figure, 
+        this.width, 
+        this.height, 
+        this.correctTiles});
+
+      int? id;
+      bool? solved;
+      String? name;
+      DateTime? publishDate;
+      String? userId;
+      String? figure;
+      String? width;
+      String? height;
+      List<int>? correctTiles;
+
+      @override
+      List<Object?> get props => [id, solved, name, publishDate, userId,
+      figure, width, height, correctTiles];
+    }
+    \end{lstlisting}
+
+    \section{Código de Capa de Datos de Niveles En Línea}
+
+    \label{cap:anexo1-4}
+    
+    Este apartado contiene la codificación de las entidades, repositorios y casos de uso de la 
+    funcionalidad \textit{Niveles en Línea}, (\textit{nonolist\_repo\_impl.dart, nonogram\_model.dart}
+    \linebreak y \textit{nonolist\_data\_source.dart}).
+    
+    \begin{lstlisting}
+      
+    import 'package:dartz/dartz.dart';
+    import '../../../../core/error/exceptions.dart';
+    import '../../../../core/error/failures.dart';
+    import '../../domain/repositories/nonolist_repo_impl.dart';
+    import '../model/nonogram_model.dart';
+    import '../datasources/nonolist_data_source.dart';
+    
+    class NonoListRepositoryImpl implements NonoListRepository {
+      final NonoListDataSource nonoListDataSource;
+      final AuthFirebaseDataSource authDataSource;
+
+      NonoListRepositoryImpl({required this.nonoListDataSource, 
+          required this.authDataSource});
+      @override
+      Future<Either<Failure, List<Nonogram>>> getNonoList() async {
+        var authFirebaseInstance;
+        try {
+          authFirebaseInstance = await authDataSource.getAuthInstace();
+        } catch (e) {throw Left(AuthFailure)}
+        try {
+          final remoteNonoList = 
+          await authFirebaseInstance.getRemoteNonolist(
+            authFirebaseInstance);
+          return Right(remoteNonoList);
+        } on ServerException {
+          throw Left(ServerFailure);}}}
+    \end{lstlisting}
+
+    \begin{lstlisting}
+
+    class NonogramModel extends Nonogram {
+      Nonogram({this.id,
+        this.solved,
+        this.name,
+        this.userId,
+        this.publishDate,
+        this.figure, 
+        this.width, 
+        this.height, 
+        this.correctTiles}):super(
+          id: id,
+          solved: solved,
+          publishDate: publishDate,
+          userId: userId,
+          figure: figure,
+          width: width,
+          height: height,
+          correctTiles: correctTiles
+        )}
+    DocumentReference get ref =>
+      FirebaseFirestore.instance.collection('nonograms').doc(id);
+      
+    static Nonogram fromDoc(DocumentSnapshot data) =>
+      Nonogram.createFromData(data.data()!, data.id);
+
+    static Future<QuerySnapshot> getNonoListSorted() {
+      return FirebaseFirestore.instance
+          .collection('nonograms')
+          .orderBy('publish_date')
+          .get(dataSource);}
+    \end{lstlisting}
+
+    \begin{lstlisting}
+
+    import 'dart:convert';
+    
+    import '../../../../api/endpoints.dart';
+    import '../../../../api/api_configuration.dart';
+    import '../../../../core/error/exceptions.dart';
+    import '../models/nonogram_model.dart';
+    
+    abstract class NonoListDataSource {
+      Future<NonogramModel> getRemoteNonolist(FirebaseFirestore instance);
+    }
+
+    class NonoListDataSourceImpl implements NonoListDataSource {
+
+      @override
+      Future<bool> getRemoteNonolist() async {
+        
+        final nonolist = 
+        await instance
+          .collection(NonoCollections.nonograms) //<- "nonograms"
+          .get()
+        
+        if(nonolist != null) {
+          return nonolist;
+        } else {
+          throw ServerException();
+        }
+      }
+
+    }
+  \end{lstlisting}
+
+  \section{Código Inyector de dependencias}
+
+  \label{cap:anexo1-5}
+    
+  Este último apartado refleja el \textit{inyector de dependencias} del proyecto,
+  mediante la librería externa \textit{get\_it}, donde se ``localizan'' todas
+  las capas  (\textit{injection\_container.dart}).
+
+\begin{lstlisting}
+
+  final sl = GetIt.instance;
+
+  Future<void> init() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final auth = await FirebaseAuth.instance;
+    final fireStore = FirebaseFirestore.instance;
+  
+    sl
+      // External
+      ..registerLazySingleton(() => sharedPreferences)
+      ..registerLazySingleton(() => auth)
+      ..registerLazySingleton(() => fireStore)
+  
+      // BLoC
+      ..registerFactory(() => NonoListBloc(getNonoListUseCase: sl()))
+  
+      // Use cases
+      ..registerLazySingleton(() => GetNonoListUseCase(repository: sl()))
+
+      // Repository
+      ..registerLazySingleton<NonoListRepository>(() =>
+          NonoListRepositoryImpl(
+              nonoListDataSource: sl(),
+              authDataSource: sl()))
+      
+      // Data sources
+      ..registerLazySingleton<NonoListDataSource>(
+          () => NonoListDataSourceImpl())
+  }
+  
+\end{lstlisting}

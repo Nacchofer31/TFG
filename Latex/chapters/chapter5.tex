@@ -10,7 +10,7 @@ El diseño de la totalidad de pantallas se ha realizado siguiendo las pautas y d
 el estándar \textit{Material Design}. Su gran contenido de iconos, estilos y componentes se ha plasmado,
 gracias al paquete \textit{material}, directamente en el aplicativo.
 
-Antes del desarrollo completo de cada una de las pantallas del aplicativo se ha optado por el diseño de
+Antes del desarrollo completo de cada una de las pantallas del aplicativo, se ha optado por el diseño de
 \textit{MockUps}, indicando cada uno de los casos de uso y requisitos funcionales vistos en el Capítulo 
 3, indicados por los identificadores del \textit{1 al 21}.
 
@@ -62,7 +62,7 @@ Como se puede apreciar, la apariencia y esencia del rompecabezas es fiel al de l
   resolviendo por el usuario.
 \end{itemize}
 
-El jugador puede abandonar el nivel en cualquier momento guardando su progreso si la opción de autoguardado
+El jugador puede abandonar el nivel en cualquier momento, guardando su progreso si la opción de autoguardado
 está activada. En el instante de resolverlo satisfactoriamente (con al menos una vida) se mostrarán
 las características del mismo, y en el caso contrario, la opción de volver a intentarlo.
 
@@ -89,7 +89,7 @@ iniciando sesión previamente, Figura \ref{fig:design-4}
 \section{Estructura del proyecto}
 Es importante que en un desarrollo de software se establezca una estructura propia de la arquitectura elegida,
 para mantener una modulabilidad y escalabilidad a nivel de sistema.
-Para ello, siguiendo las directrices del modelo \textit{Clean Architecture} se ha definido el siguiente
+Para ello, siguiendo las directrices del modelo \textit{Clean Architecture}, se ha definido el siguiente
 árbol de directorios:
 
 \definecolor{folderbg}{RGB}{230,230,230}
@@ -202,15 +202,14 @@ El proceso de codificación se ha realizado posteriormente a la creación de \te
 reglas establecidas por la metodología TDD, proceso documentado en el sexto capítulo.
 
 En el siguiente apartado se explicará el \textit{modus operandi} de la codificación de funcionalidades, acompañado de ejemplos definido 
-en el anexo, comenzando por la capa de presentación.
-%TODO: ref anexo.
+en el \autoref{cap:anexo2}, comenzando por la capa de presentación.
 
 \subsection{Desarrollo de la capa de presentación}
 La creación de cada una de las pantallas y sus componentes se ha realizado, como no podría ser de otra forma, a partir de un \textit{árbol de widgets}. 
 Para el desarrollo de pantallas se ha optado por usar widgets inmutables, llamados, \textit{stateless}, en contraposición a los de tipo \textit{stateful},
 con estado mutable. \cite{10.1007/978-981-15-1465-4_56} 
 
-Esta práctica permitirá que las vistas contengan la mínima lógica posible, pudiendo en un futuro reutilizarlas
+Esta práctica permitirá que la \textit{capa de presentación} contenga la mínima lógica posible, pudiendo en un futuro reutilizarla
 en otras funcionalidades del sistema o incluso en otras soluciones.
 
 \begin{figure}[H]
@@ -220,7 +219,7 @@ en otras funcionalidades del sistema o incluso en otras soluciones.
   \label{fig:tree-widgets-1}
 \end{figure}
 
-En la Figura \ref{fig:tree-widgets-1} y Anexo \ref{cap:anexo1-1} se puede visualizar el \textit{árbol de widgets} de la pantalla de resolución de nivel, los cuales
+En la Figura \ref{fig:tree-widgets-1} y \autoref{cap:anexo1-1} se puede visualizar el \textit{árbol de widgets} de la pantalla de resolución de nivel, los cuales
 se ``construyen'' mediante el método \textit{build()}.
 
 Esta vista contiene algunos widgets de interés que se han usado para mejorar la experiencia de usuario como:
@@ -263,7 +262,10 @@ tipos de objeto:
 
 En el caso de devolver la lista de \textit{nonogramas} actualizado con éxito, se manejará el estado
 \textit{LoadedNonoListState}, mostrando la lista de \textit{rompecabezas} al usuario y en su defecto el estado 
-de \textit{FailedNonoListState}, cargando una vista de error.
+de \textit{FailedNonoListState}, cargando una vista de error. 
+
+El código correspondiente se puede encontrar en
+\autoref{cap:anexo1-2}.
 
 \break
 
@@ -283,7 +285,7 @@ Una vez definido el caso de uso se definirán las clases genéricas de \textit{r
 \textit{capa de datos}.
 
 Siguiendo la funcionalidad de \textit{Lista de nonogramas en línea} se puede mostrar la implementación de su \textit{capa 
-de dominio} en el Anexo.
+de dominio} en el \autoref{cap:anexo1-3}.
 
 \subsection{Desarrollo de la capa de datos}
 El último paso consiste en desarrollar la \textit{capa de datos} de la funcionalidad, comenzará con la definición de los
@@ -299,7 +301,7 @@ devolver un objeto \textit{Left} o \textit{Right} propio del paquete \textit{dar
 los \textit{datasources} empleados: 
 
 En la funcionalidad citada como ejemplo dichos ejemplos contendrán los siguientes tipos de objeto, tal y como se puede visualizar
-en el Anexo:
+en \autoref{cap:anexo1-4}:
 \begin{itemize}
   \item[$\bullet$] El objeto \textit{Right} contendrá la lista de nonogramas actualizado obtenido por la llamada a \textit{Firebase} realizada por el 
   \textit{datasource}
@@ -311,9 +313,9 @@ en el Anexo:
 Por último, con el fin de ``localizar'' cada una de las capas mencionadas y hacerlas accesibles en cada punto del aplicativo,
 se empleará el uso de un \textit{Inyector de dependencias}. 
 
-Esta práctica es altamente recomendable, sobretodo, en soluciones de una
+Esta práctica es altamente recomendable, sobre todo, en soluciones de una
 extensión importante. Para ello, se definirá en el directorio \textit{di} del sistema raíz \textit{lib} la clase
-\textit{injection\_container.dart}, tal y como se puede visualizar en el Anexo.
+\textit{injection\_container.dart}, tal y como se puede visualizar en \autoref{cap:anexo1-5}.
 
 La definición de esta clase se realizará mediante la librería externa \textit{Get\_It}, uno de los \textit{localizadores de servicios}
 más popular. En el se crearán \textit{factories} para "inyectar" los \textit{BLoCs} y \textit{singletons} para el resto de
