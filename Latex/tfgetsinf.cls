@@ -197,14 +197,14 @@
      showstringspaces=false,
      showtabs=false,                  
      tabsize=2,
-    %frame=shadowbox
+     frame=single
 }
 
 % Define the code emph rules
 \lstset{
-emph=[1]{async, throw, Either, this, var, final, UseCase, super, late, return, child, children, BlocProvider, ThemeManager},% Insert here the types you are using
+emph=[1]{async, part, of, throw, Either, this, var, final, UseCase, super, late, return, child, children, BlocProvider, ThemeManager, import},% Insert here the types you are using
 emphstyle=[1]{\color{dkgreen}},
-emph=[2]{Stream, await, String, Left, Right, int, List, required, abstract, part, of, builder, BuildContext, bool, Widget, class, extends, implements, import},% Insert here the methods you are using
+emph=[2]{Stream, await, String, Left, Right, int, List, required, abstract, builder, BuildContext, bool, Widget, class, extends, implements},% Insert here the methods you are using
 emphstyle=[2]{\color{mauve}},%
 emph=[3]{@override},% Insert here the methods you are using
 emphstyle=[3]{\color{gray}}%

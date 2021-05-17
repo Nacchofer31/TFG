@@ -177,8 +177,7 @@ Este apartado muestra la codificación de la página de la funcionalidad Resoluc
     
     abstract class NonoListRepository {
       Future<Either<Failure, List<Nonogram>>> getNonoList();
-    }
-      
+    }    
     \end{lstlisting}
 
     \pagebreak
@@ -195,7 +194,6 @@ Este apartado muestra la codificación de la página de la funcionalidad Resoluc
         this.width, 
         this.height, 
         this.correctTiles});
-
       int? id;
       bool? solved;
       String? name;
@@ -246,8 +244,7 @@ Este apartado muestra la codificación de la página de la funcionalidad Resoluc
           await authFirebaseInstance.getRemoteNonolist(
             authFirebaseInstance);
           return Right(remoteNonoList);
-        } on ServerException {
-          throw Left(ServerFailure);}}}
+        } on ServerException { throw Left(ServerFailure);}}}
     \end{lstlisting}
 
     \begin{lstlisting}
@@ -298,22 +295,18 @@ Este apartado muestra la codificación de la página de la funcionalidad Resoluc
     }
 
     class NonoListDataSourceImpl implements NonoListDataSource {
-
       @override
       Future<bool> getRemoteNonolist() async {
-        
         final nonolist = 
         await instance
           .collection(NonoCollections.nonograms) //<- "nonograms"
           .get()
-        
         if(nonolist != null) {
           return nonolist;
         } else {
           throw ServerException();
         }
       }
-
     }
   \end{lstlisting}
 
@@ -332,7 +325,7 @@ Este apartado muestra la codificación de la página de la funcionalidad Resoluc
   Future<void> init() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final auth = await FirebaseAuth.instance;
-    final fireStore = FirebaseFirestore.instance;
+    final fireStore = await FirebaseFirestore.instance;
   
     sl
       // External
