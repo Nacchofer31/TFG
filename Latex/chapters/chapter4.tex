@@ -7,7 +7,7 @@ con el fin de llegar al máximo número de usuarios posibles.
 
 \section{Tecnología empleada}
 Como se había decidido en el segundo capítulo, la realización de este \textit{MVP} irá dirigido para las
-plataformas móviles: \textit{Android} e \textit{iOS}. El desarrollo de una aplicación \textit{nativa} para 
+principales plataformas móviles: \textit{Android} e \textit{iOS}. El desarrollo de una aplicación \textit{nativa} para 
 cada sistema, evidentemente, no sería factible, ya que implicaría el doble de esfuerzo en la codificación,
 testing y mantenimiento del producto~\cite{10.1145/2480362.2480464}.
 
@@ -214,14 +214,14 @@ reutilizables y fáciles de monitorizar en las tareas de identificación de erro
 
 \subsection{Manejador de estados}
 
-Es cierto que \textit{Flutter} permite \textit{manejar} todos los diferentes \textit{estados}, que van surgiendo
+\textit{Flutter} permite \textit{manejar} todos los diferentes \textit{estados} que van surgiendo
 en el aplicativo, como por ejemplo: \textit{refrescar de forma dinámica una lista de objetos}; directamente
 en la \textit{capa de presentación}, mediante la función \textit{setState()}\cite{flutterState}.
 
 Sin embargo, para nuestra aplicación u otras soluciones de gran envergadura esta tarea puede resultar muy compleja,
-además de ser totalmente opuesta a la modulabilidad y reusabilidad que ofrece la arquitectura \textit{Clean Architecture}.
+además de ser totalmente opuesta a la modularidad y reusabilidad que ofrece la arquitectura \textit{Clean Architecture}.
 Por ello, se hacen necesarios patrones de diseño que actúen como
-\textit{manejadores de estados}, que esté presente en la capa de \textit{lógica} y que se encarguen de:
+\textit{manejadores de estados}, que estén presentes en la capa de \textit{lógica} y que se encarguen de:
 
 \begin{itemize}
   \item[$\bullet$] Controlar todos los eventos presentes en el aplicativo 

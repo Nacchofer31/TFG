@@ -103,42 +103,29 @@ que sirva como guía para el correcto desarrollo total del producto.
    además de realizar cambios y mejoras en forma de nuevas versiones.
 \end{itemize}
 
-Puesto que en el presente trabajo, durante la primera fase de Planificación, los requisitos han sido detectados y establecidos bajo unos tiempos 
-y conocimientos concretos, se ha optado por el modelo clásico de \textit{Modelo en Cascada}.
+Ya que el desarrollo del producto se ha realizado por una única persona, se optó en una primera instancia, por simplicidad y falta de recursos y equipo
+la \textit{metodología tradicional}: \textit{en cascada}, enfocado en el desarrollo de un único \textit{mínimo producto viable} (MVP).
 
-\subsection{Modelo en casacada} %% http://www.umsl.edu/~hugheyd/is6840/waterfall.html
+Sin embargo, esta metodología impediría el uso de prácticas y herramientas propias de las \textit{metodologías ágiles} como, por ejemplo: \textit{la automatización de pruebas} o
+\textit{la integración continua}. Por ello, finalmente, para el desarrollo del producto, se han seguido las pautas y directrices marcadas por el subrama de la metodología
+\textit{Extreme Programming}: \textit{Personal Extreme Programming} (PXP).
 
-Siguiendo esta metodología, como se mustra en la Figura ~\ref{fig:M1}, se implantaría un modelo secuencial de todas las diferentes fases del 
-\textit{SDLC} del aplicativo, 
-desde su fase de Planificación hasta su Mantenimiento, como si se tratara de una cascada.
+\subsection{Metodología Personal Extreme Programming} %% http://www.umsl.edu/~hugheyd/is6840/waterfall.html
 
-\begin{figure}[h!]
-\begin{tikzpicture}[>=stealth,
-   node distance = 3mm and -12mm,
-     start chain = A going below right,
-every node/.style = {draw, text width=28mm, minimum height=9mm, align=center,
-                    inner sep=1mm, fill=white, drop shadow={fill=black},  on chain=A}
-                  ]
-\node {Planificación}; % A-1
-\node {Análisis};
-\node {Diseño};
-\node {Codificación};
-\node {Testing};
-\node {Implementación};
-\node {Mantenimiento};
-%
-\foreach \i [count=\j] in {2,...,7}
-{
- \draw[->, thick] (A-\j) -| (A-\i);
-}
-\end{tikzpicture}
-\caption{Esquema de un Modelo en cascada} \label{fig:M1}
-\end{figure}
+Esta metodología presenta todos los beneficios que engloba la metodología \textit{Extreme Programming}, normalmente enfocada al \textit{desarrollo ágil para equipos de pequeña envergadura} con algunas
+singularidades que la hacen única.
 
-Sin embargo, como cualquier otra metodología software, es necesario tener en cuenta ciertas consideraciones imprescindibles para el transcurso del proyecto:
+La idea central de esta subvertiene es la sustitución del concepto \textit{desarrollo por pares} propia de la metodología \textit{XP}. Esta modelo sostiene
+que el desarrollo debe de realizarse por dos programadores bajo revisiones continuas por turnos, mientras que en \textit{PXP} la totalidad de las
+fases la realiza un solo desarrollador ~\cite{inproceedings}.
+
+A continuación, se enumeran las matices de este modelo \textit{PXP} frente a la vertiente primitiva \textit{XP}, a tener en cuenta para asegurar y marcar su
+correcto funcionamiento:
+
+
 
 \begin{itemize}
-   \item[$\bullet$] Como ya se había comentado, es necesario hacer hincapié en las etapas tempranas del modelo, ya que son
+   \item[$\bullet$] Es necesario hacer hincapié en las etapas tempranas del modelo, ya que son
    las que van a definir de manera correcta los requisitos de la solución. De forma que, si no están bien establecidos, pueden 
    aparecer problemas en el resto de fases~\cite{wiegers2013software}.
    \item[$\bullet$] Esta metodología carece de iteraciones por lo que no es posible retroceder a las etapas anteriores.
@@ -148,6 +135,14 @@ Sin embargo, como cualquier otra metodología software, es necesario tener en cu
    el tiempo real que ha supuesto realizarlas. Esta especie de monitorización se realizará periódicamente y se puede encontrar 
    en el \autoref{chap:A1}
 \end{itemize}
+
+\subsection{Enfoque metodológico}
+
+Pese a que, hoy en día, las llamadas \textit{metodologías ágiles} han tomado cada vez más fuerza en desarrollos 
+de gran envergadura frente, a las cada vez menos frecuentes, \textit{metodologías tradicionales}, se ha optado, como se ha mencionado
+anteriormente el \textit{modelo en cascada}.
+
+En un 
 
 \section{Estructura de la memoria} %%%%% Opcional
 

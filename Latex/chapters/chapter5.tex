@@ -83,12 +83,12 @@ En la pantalla se pueden configurar propiedades relativas a:
 \end{itemize}
 
 El usuario puede borrar el progreso de todos sus niveles jugados mediante la opción de borrar
-progreso; además de sincronizarlo con el \textit{servicio en nube} desde el apartado cuenta, 
-iniciando sesión previamente, Figura \ref{fig:design-4}
+progreso, además de sincronizarlo con el \textit{servicio en nube} desde el apartado cuenta, 
+iniciando sesión previamente (Figura \ref{fig:design-4})
 
 \section{Estructura del proyecto}
 Es importante que en un desarrollo de software se establezca una estructura propia de la arquitectura elegida,
-para mantener una modulabilidad y escalabilidad a nivel de sistema.
+para mantener una modularidad y escalabilidad a nivel de sistema.
 Para ello, siguiendo las directrices del modelo \textit{Clean Architecture}, se ha definido el siguiente
 árbol de directorios:
 
@@ -198,10 +198,10 @@ Para ello, siguiendo las directrices del modelo \textit{Clean Architecture}, se 
 \end{figure}
 
 \section{Codificación del aplicativo}
-El proceso de codificación se ha realizado posteriormente a la creación de \textit{suite de tests} de funcionalidades, siguiendo las pautas y
+El proceso de codificación se ha realizado posteriormente a la creación de una \textit{suite de tests} de funcionalidades, siguiendo las pautas y
 reglas establecidas por la metodología TDD, proceso documentado en el sexto capítulo.
 
-En el siguiente apartado se explicará el \textit{modus operandi} de la codificación de funcionalidades, acompañado de ejemplos definido 
+En el siguiente apartado se explicará el \textit{modus operandi} de la codificación de funcionalidades, acompañado de ejemplos definidos 
 en el \autoref{cap:anexo2}, comenzando por la capa de presentación.
 
 \subsection{Desarrollo de la capa de presentación}
@@ -270,8 +270,8 @@ El código correspondiente se puede encontrar en
 \break
 
 \subsection{Desarrollo de la capa de dominio}
-El desarrollo de la \textit{capa de dominio} comienza con la definición de casos de uso a usar por el \textit{BLoC},
-esta implementación se realiza a partir de la clase genérica \textit{usecase} disponible en el paquete \textit{core}.
+El desarrollo de la \textit{capa de dominio} comienza con la definición de casos de uso a usar por el \textit{BLoC}.
+Esta implementación se realiza a partir de la clase genérica \textit{usecase} disponible en el paquete \textit{core}.
 
 Como se ha podido comprobar en la \textit{capa de dominio}, este caso de uso devuelve un objeto
 de tipo \textit{Either<Failure,Type>}, indicando que puede devolver el tipo de objeto deseado, \textit{Type}, o en caso contrario,
