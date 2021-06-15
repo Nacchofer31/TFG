@@ -95,7 +95,7 @@ que sirva como guía para el correcto desarrollo total del producto.
    y anticipándose a aquellos que puedan suponer un problema para la evolución del ciclo de vida.
    \item[$\bullet$] \textbf{Diseño}: documentar las, ya definitivas, características, partes y componentes a integrar en el aplicativo.
    \item[$\bullet$] \textbf{Codificación}: seguir los requisitos ya debidamente documentados e implementarlos creando así el aplicativo. 
-   \item[$\bullet$] \textbf{Testing}: una vez desarrollada la solución, realizar \textit{suites de tests} con el fin de encontrar o mostrar
+   \item[$\bullet$] \textbf{Testing}: realizar \textit{suites de tests} con el fin de encontrar o mostrar
    posibles errores y \textit{bugs}. Además de verificar que los requisitos de la fase de diseño están presentes en la solución.  
    \item[$\bullet$] \textbf{Implementación}: desplegar una primera versión de la aplicación y hacerla disponible en las tiendas principales
    de aplicaciones. 
@@ -119,10 +119,22 @@ La idea central de esta subvertiene es la sustitución del concepto \textit{desa
 que el desarrollo debe de realizarse por dos programadores bajo revisiones continuas por turnos, mientras que en \textit{PXP} la totalidad de las
 fases la realiza un solo desarrollador ~\cite{inproceedings}.
 
-A continuación, se enumeran las matices de este modelo \textit{PXP} frente a la vertiente primitiva \textit{XP}, a tener en cuenta para asegurar y marcar su
-correcto funcionamiento:
+\begin{figure}[H]
+   \centering
+   \includegraphics[scale=0.43]{images/pxpdiagram.pdf}
+   \caption{Diagrama de la metodología PXP}
+   \label{fig:pxpdiagram}
+ \end{figure}
 
-
+ En cuanto al diagrama de flujo de de las diferentes fases que compone
+ la metodología \textit{PXP} (Figura \ref{fig:pxpdiagram}) no difiere mucho del clásico modelo 
+ Personal Software Process (\textit{PSP}). Sin embargo, a diferencia de la corriente clásica, este permite realizar iteraciones
+ si se requiere algún cambio en alguno de los requisitos.
+ 
+ Es importante remarcar que al igual que el modelo \textit{PSP}, es recomendable realizar
+ durante todo el proceso \textit{anotaciones} de interés como: tiempos reales,
+ sugerencias de mejora, detalles..., estas anotaciones serán de gran importancia de cara
+ a cambio de requisitos o desarrollo de nuevas funcionalidades.
 
 \begin{itemize}
    \item[$\bullet$] Es necesario hacer hincapié en las etapas tempranas del modelo, ya que son
