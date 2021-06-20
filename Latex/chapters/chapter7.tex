@@ -1,0 +1,82 @@
+\chapter{Implantación y mantenimiento}
+\textit{En un ciclo de vida de un entorno de Integración Continua (CI),
+tras una inserción de código en un repositorio, posteriormente revisado por
+un tercero, un sistema funcional coge el cambio introducido, comprueba
+el código y efectúa una serie de comandos que el cambio es positivo
+y no resulta perjudicial para la solución.~\cite{6802994}}
+
+\section{Integración Continua}
+Ya que se ha empleado tanto metodología \textit{PXP} como \textit{TDD} para este proyecto,
+resultó idóneo el incorporar un aspecto tan positivo como es
+la \textit{Integración Continua}.
+
+Como se había comentado anteriormente en la \autoref{sec:git},
+la solución se aloja en un repositorio de la plataforma \textit{GitLab}.
+Como la mayoría de plataformas de servicios web de control de versiones,
+presenta una serie de herramientas propias de prácticas \textit{DevOps} que promueven
+el contínuo mantenimiento y seguridad del código, esta propiedad es
+posible mediante el servicio \textit{Auto DevOps}.
+
+A través de la opción de \textit{Quality Gate} de \textit{GitLab},
+se establecieron ciertas condiciones que debe cumplir cualquier
+cambio que se desee introducir a la rama \textit{develop}. Estas comprobaciones
+están definidas en un archivo \textit{YAML} en el archivo raíz del
+proyecto. De tal forma que cada vez que se realiza un \textit{merge} de una
+determinada \textit{feature} o directamente un \textit{commit} hacia la rama
+\textit{develop} se ejecutan la totalidad de tests desarrollados. En este
+momento, se desarrollan dos vertientes:
+
+\begin{itemize}
+    \item[$\bullet$] Si las condiciones fallan no se admite la inserción de los
+    cambios a la rama protegida a \textit{develop}, devolviendo un mensaje de error con el test o tests
+    fallidos.
+    \item[$\bullet$] Si las condiciones se cumplen, se inserta el cambio o los cambios deseados en la rama \textit{develop} con éxito.
+\end{itemize}
+
+\section{Actualización del proyecto}
+Por último, se quería destacar la adaptación del proyecto de cara a las últimas
+versiones de \textit{stable} en \textit{Flutter}, más concretamente la versión \textit{Flutter 2.0.0}.
+
+Esta actualización se estableció el 3 de marzo de 2021 e incorporaba muchas novedades y
+cambios, como: soporte para entorno \textit{web}, soporte enfocadas a plataformas:
+\textit{macOS}, \textit{Windows} y \textit{Linux}, manejo de anuncios \textit{Add-To-App}
+y la incorporación de \textit{null-safety} en \textit{Dart}.
+
+Es esta última característica de la versión la que se quiso incorporar en el proyecto,
+esta característica permitiría evitar \textit{aserciones} continuas en el código,
+definiendo clases con atributos que pueden llegar a adquirir valores nulos, asegurando
+que no ocurren excepciones durante su ejecución.
+
+Para la inclusión de esta última actualización en el proyecto se realizó mediante
+una herramienta de migración desarrollada por \textit{Flutter}.
+\textit El equipo de {Dart} sugirió una serie de pasos para la inclusión de la característica \textit{null-safety}
+en el proyecto~\cite{dartmigrate}.
+
+\begin{enumerate}
+    \item Esperar a que los paquetes incluidos en el proyecto adopten la última
+    actualización con la etiqueta \textit{null-safety}.
+    \item Ejecutar el cliente de migración  
+    \item De forma estática analiza el código de tu proyecto.
+    \item Prueba que los cambios realizados funcionan.
+    \item Si el proyecto está publicado en \textit{pub.dev}, publica el proyecto con
+    la etiqueta \textit{null-safety} como una versión \textit{prerelease}.
+\end{enumerate}
+
+El resultado de esta migración promovió que todos los paquetes incluidos en el
+proyecto estén actualizados con la última actualización \textit{null-safety},
+un código más limpio y libre de código innecesario, menos excepciones capturadas relacionadas
+con valores nulos.
+
+\section{Publicación}
+El último paso sería incluir el aplicativo en las principales tiendas de aplicaciones:
+\textit{Google Play Store} y \textit{App Store}, para ello se realizó las siguientes pasos
+para ambas plataformas.
+
+\begin{enumerate}
+    \item Establecer a nivel de proyecto un id de aplicativo para ambas plataformas, junto a sus
+    versiones mínimas y máximas de los sistemas operativos que soporta.
+    \item Creación de una cuenta con rol de desarrollador,
+    \item Generar una versión \textit{release} (un \textit{App Bundle} para Android y 
+    un \textit{IPA} para iOS) firmadas con la cuenta de desarrollador deseada.
+    \item Configurar  el entorno, opciones y características propias de las plataformas.
+\end{enumerate}

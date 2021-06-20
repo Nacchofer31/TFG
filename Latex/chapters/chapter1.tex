@@ -6,9 +6,9 @@ los nonogramas, también conocidos como hanzies, picross o griddlers.}
 
 \section{Contexto y motivación}
 
-\textit{No importa lo complejo que sea resolver un nonograma, la clave de
+\textit{``No importa lo complejo que sea resolver un nonograma, la clave de
 estos rompecabezas reside en que su resolución pueda efectuarse por simple
-lógica.~\cite{dalgety_2017}} Este era el principal propósito de \textit{James Dalgety} y su equipo
+lógica.''~\cite{dalgety_2017}} Este era el principal propósito de \textit{James Dalgety} y su equipo
 de diseñadores, responsables de dar a conocer a occidente este conocido
 pasatiempo nipón, impulsado por el arte de la diseñadora \textit{Non Ishida}, más
 adelante, responsable de su principal denominación: \textit{"Non"} Ishida y
@@ -84,7 +84,7 @@ que difieren mucho de un simple desarrollo y en su conjunto reciben el nombre de
 que corresponden a su ciclo de vida.
 
 \subsection{Ciclo de vida de desarrollo}
-Comprender esta serie de procesos sucesivos, junto a los requisitos recién comentados, es definitorio para elegir una metodología ideal,
+Comprender esta serie de procesos, junto a los requisitos recién comentados, es definitorio para elegir una metodología ideal,
 que sirva como guía para el correcto desarrollo total del producto.
 
 \begin{itemize}
@@ -97,25 +97,25 @@ que sirva como guía para el correcto desarrollo total del producto.
    \item[$\bullet$] \textbf{Codificación}: seguir los requisitos ya debidamente documentados e implementarlos creando así el aplicativo. 
    \item[$\bullet$] \textbf{Testing}: realizar \textit{suites de tests} con el fin de encontrar o mostrar
    posibles errores y \textit{bugs}. Además de verificar que los requisitos de la fase de diseño están presentes en la solución.  
-   \item[$\bullet$] \textbf{Implementación}: desplegar una primera versión de la aplicación y hacerla disponible en las tiendas principales
-   de aplicaciones. 
+   \item[$\bullet$] \textbf{Implantación}: hacer la solución \textit{software} disponible para el usuario, listo
+   para su uso.
    \item[$\bullet$] \textbf{Mantenimiento}: monitorizar la experiencia de usuario, contemplando y dando solución a posibles errores,
    además de realizar cambios y mejoras en forma de nuevas versiones.
 \end{itemize}
 
-Ya que el desarrollo del producto se ha realizado por una única persona, se optó en una primera instancia, por simplicidad y falta de recursos y equipo
+Ya que el desarrollo del producto se ha realizado por una única persona, se optó en una primera instancia, por simplicidad y falta de recursos y equipo por
 la \textit{metodología tradicional}: \textit{en cascada}, enfocado en el desarrollo de un único \textit{mínimo producto viable} (MVP).
 
-Sin embargo, esta metodología impediría el uso de prácticas y herramientas propias de las \textit{metodologías ágiles} como, por ejemplo: \textit{la automatización de pruebas} o
-\textit{la integración continua}. Por ello, finalmente, para el desarrollo del producto, se han seguido las pautas y directrices marcadas por el subrama de la metodología
+Sin embargo, esta metodología impediría el uso de prácticas y herramientas propias de las \textit{metodologías ágiles}, como por ejemplo: \textit{la automatización de pruebas} o
+\textit{la integración continua}. Por ello, tras un estudio de posibles metodologías del mundo del \textit{software}, finalmente, para el desarrollo del producto, se optaron por las pautas y directrices marcadas por el subrama de la metodología
 \textit{Extreme Programming}: \textit{Personal Extreme Programming} (PXP).
 
-\subsection{Metodología Personal Extreme Programming} %% http://www.umsl.edu/~hugheyd/is6840/waterfall.html
+\subsection{Metodología Personal Extreme Programming (PXP)} %% http://www.umsl.edu/~hugheyd/is6840/waterfall.html
 
-Esta metodología presenta todos los beneficios que engloba la metodología \textit{Extreme Programming}, normalmente enfocada al \textit{desarrollo ágil para equipos de pequeña envergadura} con algunas
+Esta metodología presenta todos los beneficios que engloba la metodología \textit{Extreme Programming}, normalmente enfocada al \textit{desarrollo ágil para equipos de pequeña envergadura}, con algunas
 singularidades que la hacen única.
 
-La idea central de esta subvertiene es la sustitución del concepto \textit{desarrollo por pares} propia de la metodología \textit{XP}. Esta modelo sostiene
+La idea central de esta subvertiente es la sustitución del concepto \textit{desarrollo por pares}, propia de la metodología \textit{XP}. Este modelo sostiene
 que el desarrollo debe de realizarse por dos programadores bajo revisiones continuas por turnos, mientras que en \textit{PXP} la totalidad de las
 fases la realiza un solo desarrollador ~\cite{inproceedings}.
 
@@ -127,9 +127,9 @@ fases la realiza un solo desarrollador ~\cite{inproceedings}.
  \end{figure}
 
  En cuanto al diagrama de flujo de de las diferentes fases que compone
- la metodología \textit{PXP} (Figura \ref{fig:pxpdiagram}) no difiere mucho del clásico modelo 
+ la metodología \textit{PXP} (\autoref{fig:pxpdiagram}) no difiere mucho del clásico modelo 
  Personal Software Process (\textit{PSP}). Sin embargo, a diferencia de la corriente clásica, este permite realizar iteraciones
- si se requiere algún cambio en alguno de los requisitos.
+ si se requiere algún cambio de diseño en alguno de los requisitos.
  
  Es importante remarcar que al igual que el modelo \textit{PSP}, es recomendable realizar
  durante todo el proceso \textit{anotaciones} de interés como: tiempos reales,
@@ -140,21 +140,30 @@ fases la realiza un solo desarrollador ~\cite{inproceedings}.
    \item[$\bullet$] Es necesario hacer hincapié en las etapas tempranas del modelo, ya que son
    las que van a definir de manera correcta los requisitos de la solución. De forma que, si no están bien establecidos, pueden 
    aparecer problemas en el resto de fases~\cite{wiegers2013software}.
-   \item[$\bullet$] Esta metodología carece de iteraciones por lo que no es posible retroceder a las etapas anteriores.
-   Hay que cerciorarse de que cada una de las fases se aprueban correctamente, de forma que sea seguro pasar a la
-   fase siguiente.
    \item[$\bullet$] En la práctica, es recomendable marcar bien los tiempos de cada fase, marcando estimaciones de cada fase y contrastarlas con
    el tiempo real que ha supuesto realizarlas. Esta especie de monitorización se realizará periódicamente y se puede encontrar 
    en el \autoref{chap:A1}
 \end{itemize}
 
-\subsection{Enfoque metodológico}
+\subsection{Enfoque personal}
 
-Pese a que, hoy en día, las llamadas \textit{metodologías ágiles} han tomado cada vez más fuerza en desarrollos 
-de gran envergadura frente, a las cada vez menos frecuentes, \textit{metodologías tradicionales}, se ha optado, como se ha mencionado
-anteriormente el \textit{modelo en cascada}.
+Pese a que, a nivel personal, por experiencia en entornos profesionales, iba a resultar más cómodo el empleo de la metodología \textit{ágil}, \textit{SCRUM},
+existían una serie de razones por las que descartar esta metodología:
 
-En un 
+
+\begin{itemize}
+   \item[$\bullet$] Para este proyecto, por tratarse de un trabajo individual resultaba insostenible adoptar esta metodología,
+   ya que está enfocada a un equipo de desarrollo, mientras que la subvertiente \textit{PXP} enfoca
+   la totalidad del desarrollo en un único programador.
+   \item[$\bullet$] La metodología \textit{PXP}, junto a su rama padre \textit{XP} promueven el uso de
+   tests realizados por el propio programador, para verificar y validar los requisitos, empleando normalmente la metodología \textit{TDD}. Sin embargo, para
+   el uso de \textit{SCRUM}, en muchas ocasiones, se requiere de un equipo de \textit{QA} para efectuar la validación de requisitos.
+   \item[$\bullet$] En \textit{SCRUM}, los requisitos no pueden ser cambiantes, una vez se definen son definitorios,
+   en \textit{PXP} existe un margen de mejora ante un posible problema o estímulo, hecho algo probable en
+   escenarios de esta índole.
+\end{itemize}
+
+
 
 \section{Estructura de la memoria} %%%%% Opcional
 
@@ -171,11 +180,11 @@ El resto de capítulos que conforman la memoria, son los que se resumen a contin
    el funcionamiento interno de cada una de ellas, entrando en el apartado técnico.
    \item[$\bullet$] \textbf{Capítulo 6. Pruebas}: se muestran el conjunto de pruebas, que se han desarrollado para la posible identificación de 
    errores y posibles fallos en su ejecución, todas ellas divididas en tipos. 
-   \item[$\bullet$] \textbf{Capítulo 7. Implementación y mantenimiento}: se explica el paso que se ha realizado para hacer que el aplicativo sea accesible
+   \item[$\bullet$] \textbf{Capítulo 7. Implantación y mantenimiento}: se explica el paso que se ha realizado para hacer que el aplicativo sea accesible
    para los usuarios y las medidas para su mantenimiento. 
    \item[$\bullet$] \textbf{Capítulo 8. Manual de uso}: presenta una pequeña demo con el fin de que el usuario se familiarice con el uso de
    la solución, mostrando capturas del mismo.
-   \item[$\bullet$] \textbf{Capítulo 9. Conclusión y Trabajo Futuro}: contempla las conclusiones que se han obtenido durante la realización del trabajo y
+   \item[$\bullet$] \textbf{Capítulo 9. Conclusión y trabajo Futuro}: contempla las conclusiones que se han obtenido durante la realización del trabajo y
    las mejoras que se tomarán para siguientes versiones del mismo.
    \item[$\bullet$] \textbf{Apéndices}: se muestran anexos relacionados con análisis de tiempos y apartados relacionados con la codificación del
    la solución y análisis de tiempos.

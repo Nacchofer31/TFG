@@ -20,7 +20,7 @@ la metodología \textit{Extreme Programming}~\cite{1510569}.
     \label{fig:tdd-diagram}
 \end{figure}
 
-La elección de la arquitectura \textit{Clean Architecture} en el proyecto es un aspecto que
+La elección de la arquitectura hexagonal \textit{Clean Architecture} en el proyecto es un aspecto que
 facilita notablemente la implementación de la metodología en el proyecto, permitiendo
 abstraer completamente los test para poder reutilizarlos incluso en otros casos de uso.
 
@@ -30,17 +30,115 @@ proyecto:
 
 \begin{enumerate}
     \item De cara a integrar una nueva funcionalidad en el proyecto, se desarrolla una
-    \textit{suite de tests}. La variedad de tipos de test es extensa, para el desarrollo
-    de la aplicación se ha optado por tests \textit{unitarios} y \textit{de estado},
-    con el fin de cubrir la mayor \textit{cobertura de código} posible.
-    \item El siguiente paso consiste en ejecutar los tests, de forma evidente se obtiene 
-    una serie de resultados fallidos ya que aún no se ha desarrollado la funcionalidad.
+    \textit{suite de tests}, obteniendo una idea central y unas pautas más claras de la funcionalidad a desarrollar.
+    \item El siguiente paso consiste en ejecutar los tests. De forma evidente se obtiene 
+    una serie de resultados fallidos, ya que aún no se ha desarrollado la funcionalidad.
+    Las pruebas deben de testar funciones lo más concretas y triviales posibles, además de ser
+    completamente independientes unas de otras.
     \item En este momento se desarrolla la funcionalidad, dividida por las capas
     ya comentadas en el anterior capítulo.
     \item Conforme se va desarrollando la funcionalidad la ejecución de los tests
-    van adquiriendo valores exitosos. De este modo, se asegura que la totalidad de las partes desarrolladas
-    tengan los mínimos errores posibles.
-    \item Una vez la ejecución de los tests de la funcionalidad tiene ausencia de errores 
+    van adquiriendo valores exitosos. De este modo, se asegura que la las porciones de código desarrolladas
+    puedan contener el mínimo número de \textit{bugs}.
+    \item Una vez la ejecución de los tests de la funcionalidad tiene ausencia de errores, 
     se procede a la \textit{refactorización} del código (desde cambios de nombres de variables
-    hasta optimización de algoritmos desarrollados).
+    hasta desechar posibles elementos innecesarios). Estas sucesivas \textit{refactorizaciones}
+    favorecen que el producto esté mantenido de forma constante.
  \end{enumerate}
+
+ Ya enumerados estos pasos, se llega a la conclusión de que la idea central, que alberga esta 
+ metodología \textit{TDD}, no se resume como el simple hecho de \textit{testear antes de escribir código}, sino un
+ proceso capaz de:
+
+ \begin{itemize}
+     \item[$\bullet$] Explorar y comprender mejor la problemática central de la solución antes de comenzar con
+     su implementación.
+     \item[$\bullet$] Detectar y anticiparse frente a  posibles excepciones o problemas que
+     puedan surgir durante el desarrollo.
+     \item[$\bullet$] Detectar posibles actualizaciones de requisitos en base a la complejidad
+     de una determinada prueba \textit{(retrospectiva)}.
+ \end{itemize}
+
+ En la práctica, resulta realmente extensa la cantidad de tipos de pruebas que se pueden emplear para testar una
+ solución \textit{software}. \textit{Flutter}, como cualquier otro \textit{framework} de desarrollo, presenta
+ numerosas herramientas para favorecer y aligerar esta tarea. Los tipos de pruebas más recurrentes que presenta este entorno
+ son: tests de \textit{widgets}, \textit{golden}, \textit{end-to-end}, 
+ \textit{integración} y \textit{unitarios}.
+ 
+ Con el fin de obtener la mayor \textit{cobertura de código} posible en el aplicativo, se ha optado por el uso de estos
+ tres últimos, además de ser plenamente complementarios. En los siguientes apartados se introducirán y explicarán su uso mediante algunos ejemplos.
+
+ \subsection{Pruebas unitarias}
+ Los tests unitarios son una parte fundamental de cualquier desarrollo
+ de \textit{software}, pues son tests automatizados que aseguran el correcto
+ funcionamiento de determinados componentes, llamados individualmente como \textit{unidad}.
+
+ Según el volumen ``\textit{Unit Testing: Principles, Practices, and Patterns}'' de \textit{Vladimir Khorikov} (pp. 21) \cite{khorikov2020unit}, un test se considera unitario cuando reúne estas tres características:
+ \begin{itemize}
+     \item[$\bullet$] Verifica una única funcionalidad.
+     \item[$\bullet$] Se crea de forma trivial y rápida.
+     \item[$\bullet$] Se desarrolla de forma independiente.
+ \end{itemize}
+
+ En este proyecto se han realizado tests de la totalidad de las clases \textit{modelo} y \textit{entidad}, ya que
+ son las que va a emplear las funcionalidades del aplicativo final. Entre los más importantes se destaca, como
+ no podía ser de otra forma, el \textit{modelo} de la entidad
+ \textit{nonograma}, ya que es la que está presente en la mayoría de casos de uso de la solución.
+
+ Como se puede ver en el anexo <<X>>, mediante el paquete \textit{flutter\_test} se testea un objeto del
+ modelo \textit{Nonograma}. Este objeto se instancia en un método \textit{setUp()} con ciertos valores 
+ arbitrarios y se testean ciertas casuísticas en forma de \textit{tests}, 
+ todos ellos comprendidos en un método \textit{main()}
+ que se encarga de ejecutarlos.
+ Todos estos \textit{tests} pueden ``agruparse'' en forma \textit{groups}, en el caso de que exista una correlación
+ entre cada uno de ellos.
+
+ \subsection{Pruebas de integración}
+ Siguiendo el mismo ejemplar anteriormente citado, un test de \textit{integración} es aquel que no reúne ninguna
+ de las tres características, previamente enumeradas, propias de los \textit{tests unitarios}.
+ Estos tipos de test cubren las porciones de código relacionadas con los controladores y
+ lógicas de negocio.
+
+ En el caso de este aplicativo, las pruebas de integración se encargarán de cubrir y testar todos los posibles comportamientos
+ que comprenden los manejadores de estados, las clases \textit{BLoC}.
+
+ En estos tipos de pruebas se inicializa el \textit{BLoC} a probar mediante
+ el método \textit{setUp()} y se testea la sucesión de \textit{estados} que emite este mismo
+ objeto frente a un determinado \textit{evento}. Toda esta sucesión de \textit{estados} se definen en un \textit{array}
+ y se comparan con la cadena de \textit{estados} esperada mediante el método \textit{expect()}.
+
+ Además, los \textit{BLoCs} pueden interactuar con servicios externos a usar por el aplicativo como \textit{bases de datos locales y remotas},
+ \textit{pasarelas de pago}, \textit{librerías de terceros}... Y aquí entra en juego un término ampliamente conocido en el mundo del  \textit{testing},
+ los \textit{Mocks}.
+
+ Los \textit{mocks} son objetos de ``prueba'' que simulan o imitan ciertos comportamientos
+ de objetos reales en un entorno controlado. Con estos tipos de objetos se pueden simular
+ todos las casuísticas de una determinado caso de uso, desde excepciones y fallos hasta situaciones
+ ideales.
+ Todas estos casos en el patrón \textit{BLoC} se pueden traducir en forma de estados.
+
+ El uso de estos \textit{mocks} permitirá el uso de los servicios a emplear por \textit{BLoC} sin
+ su concreta implementación en un entorno de \textit{producción}.
+ 
+ Mediante la librería externa \textit{mockito} se permitirá incorporar este tipo de objetos
+ en el aplicativo. Como se puede comprobar en el anexo <<X>>, cada servicio a simular debe de
+ extender de la clase \textit{Mock}, proporcionado por el propio paquete \textit{mockito}.
+ En él se inicializan, mediante el método \textit{setUp()}, el \textit{BLoC} a probar junto con
+ los servicios a simular mediante \textit{Mocks}.
+
+ \subsection{Pruebas end-to-end}
+ Las \textit{pruebas end-to-end}, son las pruebas finales y verifican que
+ toda la experiencia de usuario es satisfactoria en un entorno con los servicios reales
+ y en conexión y disponibles para el aplicativo. En este momento se definirá si una
+ determinada funcionalidad estará preparada para su inclusión en el sistema,
+ o en su defecto, requiere un ajuste en el diseño.
+
+ La representación de estos tres tipos de pruebas en el aplicativo se refleja en la \autoref{fig:test-diagram}, en
+ esta se puede observar su alcance en este proyecto.
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{images/testdiagram.pdf}
+    \caption{Diagrama de los tipos de pruebas en el aplicativo}
+    \label{fig:test-diagram}
+\end{figure}

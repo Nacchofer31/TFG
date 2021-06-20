@@ -1,6 +1,6 @@
 \chapter{Diseño de la solución}
-\textit{El desarrollo de una aplicación multiplataforma es una opción cada vez más a tener en 
-cuenta dentro del ámbito del desarrollo móvil~\cite{10.1145/3241739}. La mayor parte de desarrollos
+\textit{``El desarrollo de una aplicación multiplataforma es una opción cada vez más a tener en 
+cuenta dentro del ámbito del desarrollo móvil''~\cite{10.1145/3241739}. La mayor parte de desarrollos
 se van a querer destinar a las principales plataformas móviles, 
 con el fin de llegar al máximo número de usuarios posibles.
 }
@@ -34,7 +34,7 @@ Esta relación \textit{apariencia/rendimiento}, la consigue \textit{Flutter} de 
 
 Del mismo modo, realiza la conversión directa de servicios propios, \textit{Platform Channels}, en librerías nativas que
 interactúan con las funcionalidades propias del dispositivo~\cite{leler2019s}, 
-tal y como se puede visualizar en la Figura \ref{fig:flutter1}.
+tal y como se puede visualizar en la \autoref{fig:flutter1}.
 
 Esta en una de las razones principales por las que se ha elegido el uso de esta herramienta, frente a otros 
 \textit{frameworks} de desarrollo móvil como: 
@@ -67,7 +67,7 @@ las \textit{relacionales},
 a tener en cuenta en la definición de los modelos, tales como flexibilidad, seguridad y rendimiento.
 
 La funcionalidades \textit{in-cloud} del \textit{back-end} de la aplicación final 
-quedarán cubiertas por los apartados mostrados en la Tabla \ref{fig:tableFirebase}
+quedarán cubiertas por los apartados mostrados en la \autoref{fig:tableFirebase}
 
 \begin{table}[H]
     \centering
@@ -90,7 +90,7 @@ quedarán cubiertas por los apartados mostrados en la Tabla \ref{fig:tableFireba
   \end{table}
 
 El diagrama de flujo del aplicativo con los servicios que ofrece la plataforma \textit{Firebase} puede verse
-representado por el diagrama de la Figura\ref{fig:backdiagram1}
+representado por el diagrama de la \autoref{fig:backdiagram1}
 
 \begin{figure}[H]
   \centering
@@ -115,7 +115,7 @@ serie de atributos. Estos documentos se almacerán según su tipo en contenedore
 \textit{usuarios, nonogramas y progresos}, en el caso de este aplicativo.
 
 Este modelo de datos, a diferencia de los relacionales, puede ser totalmente flexible y definido por el aplicativo, no obstante,
-para asegurar una mayor consistencia se ha definido desde el portal web de \textit{Firestore}, Figura \ref{fig:firestore1}.
+para asegurar una mayor consistencia se ha definido desde el portal web de \textit{Firestore}, \autoref{fig:firestore1}.
 
   \subsection{Visual Studio Code}
 Como \textit{IDE} de desarrollo se empleará la herramienta \textit{Visual Studio Code}, desarrollado por
@@ -123,9 +123,10 @@ Como \textit{IDE} de desarrollo se empleará la herramienta \textit{Visual Studi
 de una gran cantidad de \textit{extensiones o plugins}, que facilitan notablemente el proceso de \textit{codificación},
 además de estar mejor optimizado para labores de \textit{compilación y depuración.}
 
-\subsection{GitHub}
-Se empleará \textit{GitHub} para el \textit{control de versiones}, siguiendo la metodología propias de 
-\textit{GitFlow}, en el que tendremos, como se puede visualizar en la Figura~\ref{fig:gitflow1}:
+\subsection{Git}
+\label{sec:git}
+Se empleará \textit{Git} para el \textit{control de versiones}, alojando el proyecto en un repositorio en \textit{GitLab}. Además, siguiendo la metodología propias de 
+\textit{GitFlow}, se presentará, como se puede visualizar en la \autoref{fig:gitflow1}:
 i) una rama \textit{master} para versiones finales del aplicativo,
 ii) una rama \textit{develop} en la que aunar las funcionalidades desarrolladas y iii) las ramas
 \textit{feature} que se crearán por cada funcionalidad a desarrollar, dividida por todas las capas propuestas
@@ -140,7 +141,7 @@ por la filosofía \textit{Clean Architectute}, junto a sus \textit{suites de tes
 
 Además, nos nutriremos de las buenas prácticas, \textit{librerías} y \textit{repositorios} disponibles en la plataforma,
 aprovechando la subida exponencial de la comunidad \textit{Flutter} en este último año, posicionándose
-dentro de las tecnologías con más \textit{stars} en el \textit{sitio web}~\cite{gittracker}.
+dentro de las tecnologías con más \textit{stars} en \textit{sitios web} como \textit{GitHub}~\cite{gittracker}.
 
 \section{Arquitectura del Sistema}
 Una vez definidas las tecnologías que se van a utilizar para el desarrollo de la solución, es importante definir una 
@@ -152,11 +153,11 @@ proceso industrial y el desarrollo va a ser realizado por una persona, además d
 no se quiere entorpecer la escalabilidad del sistema, facilitando, de esta forma, las fases de testeo y mantenimiento.
 
 Para un desarrollo con \textit{Flutter} como \textit{framework} de desarrollo \textit{front-end} y \textit{Firebase}
-como infraestructura de servicios \textit{back-end}, se empleará, \textit{la arquitectura por capas}, o 
-\textit{Layered Architecture} 
+como infraestructura de servicios \textit{back-end}, se empleará, \textit{una arquitectura hexagonal}, o 
+como se conoce en \textit{frameworks} como \textit{Flutter}, \textit{Clean Architecture},
 una de las más arquitecturas más conocidas y elegidas en entornos de desarrollo móvil~\cite{7053865}.
 
-\subsection{Arquitectura por capas}
+\subsection{Clean Architecture}
 El objetivo de esta arquitectura es la de abstraer lo máximo posible los diferentes bloques o componentes que van a
 conformar el sistema. 
 
@@ -172,16 +173,16 @@ Empleando la siguiente arquitectura se pretenderá obtener, a corto y largo plaz
 \end{itemize}
 
 A partir de esta arquitectura es posible dividir el sistema mediante N bloques, para el aplicativo final se ha optado por una
-arquitectura dividida en cuatro capas, como se puede visualizar en la Figura~\ref{fig:architecture1}.
+arquitectura dividida en cuatro capas, como se puede visualizar en la \autoref{fig:architecture1}.
 
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.7]{images/architecture.pdf}
-  \caption{Diagrama de \textit{Arquitectura basada en cuatro capas}}
+  \caption{Diagrama de \textit{Diagrama Clean Architecture}}
   \label{fig:architecture1}
 \end{figure}
 
-A continuación, se comentará la funcionalidad de cada una de las capas, en la Tabla~\ref{fig:tablelayers}:
+A continuación, se comentará la funcionalidad de cada una de las capas, en la \autoref{fig:tablelayers}:
 
 \begin{table}[H]
   \centering
@@ -207,7 +208,7 @@ A continuación, se comentará la funcionalidad de cada una de las capas, en la 
 \end{table}
 
 Adicionalmente, justo a este modelo de capas se adoptará
-la arquitectura \textit{Clean Arquitecture} y la metodología de desarrollo quiado
+la metodología de desarrollo guiado
 por pruebas \textit{TDD}, práctica cada vez más vista en proyectos extensos y de gran escalabilidad ~\cite{9071367}.
 La combinación de estas dos praxis permitirán modularizar al máximo las funcionalidades del sistema, haciéndolos más
 reutilizables y fáciles de monitorizar en las tareas de identificación de errores y rendimiento.
@@ -230,7 +231,7 @@ Por ello, se hacen necesarios patrones de diseño que actúen como
 \end{itemize}
 
 Dentro del gran abanico de librerías e implementaciones que ofrece \textit{Flutter} se ha optado por, como se puede 
-visualizar en la Figura~\ref{fig:architecture1}, la combinación de los siguientes patrones:
+visualizar en la \autoref{fig:architecture1}, la combinación de los siguientes patrones:
 
 \begin{itemize}
   \item[$\bullet$] \textbf{Patrón BLoC}: empleado para centralizar los cambios de estado, recibiendo \textit{eventos}

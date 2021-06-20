@@ -1,6 +1,6 @@
 \chapter{Desarrollo de la solución}
-\textit{El desarrollo de aplicaciones móviles resulta desafiante por la gran variedad de dispositivos
-móviles con diferentes sistemas operativos, características y tamaños \cite{7021823}. Esta tarea
+\textit{``El desarrollo de aplicaciones móviles resulta desafiante por la gran variedad de dispositivos
+móviles con diferentes sistemas operativos, características y tamaños'' \cite{7021823}. Esta tarea
 la suplementa Flutter con sus widgets, permitiendo
 desarrollar todo tipo de vistas con un diseño adaptativo para la mayoría de dispositivos.
 }
@@ -32,7 +32,7 @@ de uso y requisitos funcionales disponibles.
 La pantalla de Selector de niveles clásicos mostrará todos los niveles disponibles predeterminados del sistema,
 muchos de ellos extraídos de los libros \textit{Griddlers}, publicados por el noticiero británico 
 \textit{Sunday Telegraph}.
-A medida los niveles han sido superados se descubrirá el nombre de la figura que representa, Figura \ref{fig:design-1}.
+A medida los niveles han sido superados se descubrirá el nombre de la figura que representa,  \autoref{fig:design-1}.
 
 \begin{figure}[H]
     \centering
@@ -48,7 +48,7 @@ A medida los niveles han sido superados se descubrirá el nombre de la figura qu
   \label{fig:design-3}
 \end{figure}
 
-En la Figura \ref{fig:design-3} se puede observar el diagrama de flujo de resolución
+En la  \autoref{fig:design-3} se puede observar el diagrama de flujo de resolución
 de nivel. 
 Como se puede apreciar, la apariencia y esencia del rompecabezas es fiel al de los medios tradicionales:
 
@@ -84,7 +84,7 @@ En la pantalla se pueden configurar propiedades relativas a:
 
 El usuario puede borrar el progreso de todos sus niveles jugados mediante la opción de borrar
 progreso, además de sincronizarlo con el \textit{servicio en nube} desde el apartado cuenta, 
-iniciando sesión previamente (Figura \ref{fig:design-4})
+iniciando sesión previamente (\autoref{fig:design-4})
 
 \section{Estructura del proyecto}
 Es importante que en un desarrollo de software se establezca una estructura propia de la arquitectura elegida,
@@ -219,7 +219,7 @@ en otras funcionalidades del sistema o incluso en otras soluciones.
   \label{fig:tree-widgets-1}
 \end{figure}
 
-En la Figura \ref{fig:tree-widgets-1} y \autoref{cap:anexo1-1} se puede visualizar el \textit{árbol de widgets} de la pantalla de resolución de nivel, los cuales
+En la \autoref{fig:tree-widgets-1} y \autoref{cap:anexo1-1} se puede visualizar el \textit{árbol de widgets} de la pantalla de resolución de nivel, los cuales
 se ``construyen'' mediante el método \textit{build()}.
 
 Esta vista contiene algunos widgets de interés que se han usado para mejorar la experiencia de usuario como:
@@ -318,5 +318,5 @@ extensión importante. Para ello, se definirá en el directorio \textit{di} del 
 \textit{injection\_container.dart}, tal y como se puede visualizar en \autoref{cap:anexo1-5}.
 
 La definición de esta clase se realizará mediante la librería externa \textit{Get\_It}, uno de los \textit{localizadores de servicios}
-más popular. En el se crearán \textit{factories} para "inyectar" los \textit{BLoCs} y \textit{singletons} para el resto de
+más popular. En el se crearán \textit{factories} para ``inyectar'' los \textit{BLoCs} y \textit{singletons} para el resto de
 servicios (\textit{repositories},\textit{use cases}, \textit{datasources} y servicios externos como \textit{Firebase} y \textit{Sqflite}).
