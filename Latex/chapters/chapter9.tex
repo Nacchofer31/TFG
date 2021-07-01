@@ -1,4 +1,118 @@
 \chapter{Conclusiones y trabajo futuro}
-\textit{La Ingeniería de Software}
+\textit{Las buenas prácticas de la Ingeniería de Software son esenciales para el desarrollo de
+productos software de gran envergadura, donde un grupo de ingenieros trabajan en equipo de cara a desarrollar la solución. \cite{mall2018fundamentals}
+}
 
 \section{Relación del trabajo relacionado con los estudios cursados}
+De forma evidente, para la realización del presente trabajo, han resultado imprescindibles los conocimientos adquiridos del
+Grado de Ingeniería Informática, sobre todo aquellos propios de las asignaturas de la rama de \textit{Ingeniería de Software}.
+A continuación se realizará un repaso de la influencia de estos estudios en el trabajo:
+
+Para la elección entre todo el abanico de metodologías \textit{software} disponibles, una metodología acorde al proyecto, ha sido
+necesario el estudio de las mismas. La asignatura \textit{Proceso de software} ha facilitado el proceso de explorar
+cada una de las metodologías, contemplando sus limitaciones e impacto en el proyecto. Tomando finalmente la metodología \textit{PXP}
+como guía fundamental.
+
+Gracias  a la asignatura de \textit{Análisis y Estudio de Requisitos}, se han identificado y analizado todos
+los requisitos a incorporar en el aplicativo, todos ellos especificados gracias al estándar IEEE Std 830-1998, visto previamente
+en la asignatura.
+
+Obtener una cobertura de código realmente extensa ha sido realmente importante de cara al uso de la
+metodología \textit{PXP}. Esto ha sido posible por el seguimiento de la metodología \textit{TDD}
+junto las bases y conocimientos de  la asignatura \textit{Análisis Validación y Depuración de Software}.
+
+El uso y comprendimiento de patrones de diseño y principios de \textit{código limpio} reflejados en la materia \textit{Diseño de Software}
+han propiciado el uso en el aplicativo de \textit{manejadores de estados}, establecer una arquitectura acorde
+al proyecto y tener un código más \textit{modular}, legible y funcional.
+
+Por último, han sido necesarias una serie de competencias transversales que han sido estudiadas
+y vistas durante todo el Grado. Aquellas más remarcables y presentes en este proyecto son las que siguen:
+
+\begin{itemize}
+    \item[$\bullet$] \textbf{Análisis y resolución de problemas}: una de las
+    más recurrentes y presentes durante la realización de este trabajo. Gracias a esta, se han
+    analizado la problemática a resolver, establecido y usado un plan de acción y posteriormente
+    verificado su correcto funcionamiento.
+    \item[$\bullet$] \textbf{Instrumental específica}: Gracias a esta competencia
+    se han analizado los principales \textit{frameworks} de desarrollo móvil actuales. 
+    Eligiendo \textit{Flutter} como el entorno de desarrollo principal y empleando de forma
+    análoga la plataforma \textit{back\-end} \textit{Firebase}.
+    \item[$\bullet$] \textbf{Instrumental específica}: Gracias a esta competencia
+    se han analizado los principales \textit{frameworks} de desarrollo móvil actuales. 
+    Eligiendo \textit{Flutter} como el entorno de desarrollo principal y empleando de forma
+    análoga la plataforma \textit{back\-end} \textit{Firebase}.
+    \item[$\bullet$] \textbf{Diseño y proyecto}: Al tratarse de un proyecto individual
+    ha sido realmente necesaria esta competencia, contemplando y anticipando
+    posibles limitaciones de recursos y en general. El resultante de este proceso
+    ha sido la creación de un producto propio a medida.
+\end{itemize}
+
+\section{Conclusiones}
+Como conclusiones finales, haciendo una retrospectiva de los objetivos
+marcados en el inicio del proyecto, se puede afirmar que se ha cumplido
+ el objetivo primordial: Desarrollar un \textit{MPV} de un aplicativo móvil capaz de:
+i) adaptar la experiencia de resolución de un nonograma en un medio digital
+ii) crear una funcionalidad capaz de crear tus propios \textit{nonogramas} y
+compartirlos con la comunidad.
+
+Para ello, se ha contemplado y aplicado finalmente la opción de extender el uso 
+del aplicativo en las dos sistemas operativos móviles principales: \textit{iOS}
+y \textit{Android}, empleando el \textit{framework} de desarrollo móvil
+multiplataforma \textit{Flutter}. Plataforma que, durante el desarrollo de
+este proyecto, ha ido adoptando nuevas actualizaciones y versiones que han
+facilitado y mejorado el desarrollo del aplicativo. Una de las
+principales actualizaciones fue la versión en entorno \textit{stable} \textit{Flutter 2.0.0}, 
+la cual hizo necesario adaptar la característica de \textit{null-safety} en el proyecto,
+actualmente una vital característica en proyectos \textit{Flutter}. Es notable 
+destacar que esta migración, tuvo que realizarse hasta que todos las librerías de terceros
+existentes del proyecto adoptaran la propiedad \textit{null-safety}. Este hecho hizo
+requerir más tiempo en completar e implementar algunas funcionalidades.
+
+Se ha ahondado y estudiado el campo de los servicios \textit{en nube}, barajando
+varias soluciones disponibles actuales, como entornos: \textit{Azure}, \textit{AWS}, ... empleando finalmente la plataforma de datos
+de tipo \textit{real-time} de \textit{Firebase} (\textit{Cloud Firestore}), junto a sus principales funcionalidades
+tales como: \textit{Firebase Authentication} y \textit{Analytics}. A diferencia
+del uso de \textit{Flutter}, para el empleo de estas funcionalidades fue
+necesario su estudio, ya que no se tenía una experiencia profesional. Sin embargo,
+fue una decisión acertada ya que su combinación junto con \textit{Flutter} es una 
+de las más recurrentes en este ámbito.
+
+No solo se han aplicado los principios y las bases marcadas por la arquitectura hexagonal
+\textit{Clean Architecture}, sino se ha complementado junto a la metodología
+de tests automatizados \textit{TDD}, un imprescindible en la tarea de
+verificar y validar el sistema de principio a fin.
+
+Toda este serie de apartados han podido cumplirse por el análisis de una gran
+cantidad de artículos, medios digitales y libros académicos. Este gran abanico
+de contenido ha facilitado notablemente el desarrollo final del proyecto,
+aplicando patrones de diseño, buenas praxis y uso del famoso compendio de \textit{clean code}.
+
+Por último y no menos importante, desde la visión de un aficionado de los \textit{nonogramas}, ha sido necesario profundizar en el mundo
+de los rompecabezas, comprender más a fondo su lógica y complejidad, más allá de su resolución, contemplando
+y recopilando características de otras soluciones existentes.
+
+\section{Trabajo futuro}
+La realización de este trabajo se han centrado, mayoritariamente, en el cumplimiento de los objetivos
+anteriormente nombrados. Sin embargo, durante todo el proceso, se han encontrado una serie de puntos interesantes
+a incluir.
+
+La gran actualización de \textit{Flutter 2.0.0}, ha permitido desde su fecha de salida,
+compilar proyectos desarrollados con \textit{Flutter} en entornos \textit{web} y
+sistemas operativos de escritorio tales como: \textit{Windows}, \textit{Linux} y \textit{MacOS}.
+No obstante, su proceso no es inmediato, requiere de adaptar la mayoría de componentes
+visuales (\textit{widgets}) a las proporciones de los monitores actuales, además de, adaptar
+una gran cantidad de librerías externas de este proyecto en estos entornos.
+Ya que actualmente, en este \textit{framework}, los desarrollos en \textit{web} son los más recurrentes después de los móviles,
+sería interesante adaptar este aplicativo a este medio digital. Posteriormente, cuando estén
+más normalizados los desarrollos en aplicaciones de escritorio, empezar a adaptar el aplicativo en estos
+entornos.
+
+De forma análoga, el paquete \textit{Google Mobile Ads} fue impulsado tras esta actualización,
+este servicio nos permite monetizar el aplicativo mediante anuncios. Esta característica
+podría introducirse de forma no intrusiva en la aplicación y puede convertirse en una de las vías principales para generar ingresos sin
+llegar a entorpecer al usuario, siempre pensando en la experiencia de juego.
+
+Finalmente, aunque el aplicativo tiene una temática visual bien diferenciada y
+definida, presenta numerables limitaciones de diseño. Incluir más animaciones, diferentes \textit{assets} visuales y
+colecciones de iconos personalizados, mejoraría notablemente la estética del aplicativo, un requisito
+fundamental hoy en día en aplicaciones de su misma categoría.

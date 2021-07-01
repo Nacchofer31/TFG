@@ -66,7 +66,7 @@ proyecto:
  \textit{integración} y \textit{unitarios}.
  
  Con el fin de obtener la mayor \textit{cobertura de código} posible en el aplicativo, se ha optado por el uso de estos
- tres últimos, además de ser plenamente complementarios. En los siguientes apartados se introducirán y explicarán su uso mediante algunos ejemplos.
+ tres últimos, además de ser plenamente complementarios. En los siguientes apartados se introducirán y explicarán su uso en el sistema.
 
  \subsection{Pruebas unitarias}
  Los tests unitarios son una parte fundamental de cualquier desarrollo
@@ -85,7 +85,7 @@ proyecto:
  no podía ser de otra forma, el \textit{modelo} de la entidad
  \textit{nonograma}, ya que es la que está presente en la mayoría de casos de uso de la solución.
 
- Como se puede ver en el anexo <<X>>, mediante el paquete \textit{flutter\_test} se testea un objeto del
+ Mediante el paquete \textit{flutter\_test} se testea un objeto del
  modelo \textit{Nonograma}. Este objeto se instancia en un método \textit{setUp()} con ciertos valores 
  arbitrarios y se testean ciertas casuísticas en forma de \textit{tests}, 
  todos ellos comprendidos en un método \textit{main()}
@@ -121,7 +121,7 @@ proyecto:
  su concreta implementación en un entorno de \textit{producción}.
  
  Mediante la librería externa \textit{mockito} se permitirá incorporar este tipo de objetos
- en el aplicativo. Como se puede comprobar en el anexo <<X>>, cada servicio a simular debe de
+ en el aplicativo. Cada servicio a simular debe de
  extender de la clase \textit{Mock}, proporcionado por el propio paquete \textit{mockito}.
  En él se inicializan, mediante el método \textit{setUp()}, el \textit{BLoC} a probar junto con
  los servicios a simular mediante \textit{Mocks}.
