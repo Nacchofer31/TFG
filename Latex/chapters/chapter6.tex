@@ -68,6 +68,13 @@ proyecto:
  Con el fin de obtener la mayor \textit{cobertura de código} posible en el aplicativo, se ha optado por el uso de estos
  tres últimos, además de ser plenamente complementarios. En los siguientes apartados se introducirán y explicarán su uso en el sistema.
 
+ En cuanto al entorno y herramientas que se han empleado para la realización de las pruebas
+ son las proporcionadas por el \textit{IDE} de desarrollo \textit{Visual Studio Code}, mediante su modo
+ \textit{testing} (\textit{flutter test}).
+
+ Gracias a este entorno se han podido ejecutar todas las baterías de pruebas,
+ de forma individual como completa. 
+
  \subsection{Pruebas unitarias}
  Los tests unitarios son una parte fundamental de cualquier desarrollo
  de \textit{software}, pues son tests automatizados que aseguran el correcto
@@ -92,6 +99,17 @@ proyecto:
  que se encarga de ejecutarlos.
  Todos estos \textit{tests} pueden ``agruparse'' en forma \textit{groups}, en el caso de que exista una correlación
  entre cada uno de ellos.
+
+ Algunas de las pruebas unitarias que se han implementado relacionados con el modelo \textit{Nonograma}
+ han verificado:
+
+ \begin{itemize}
+    \item[$\bullet$] El nombre completo (comprobar que no sea vacío y no contenga carácteres especiales).
+    \item[$\bullet$] El número de celdas correctas (comprobar que esté comprendido en el array).
+    \item[$\bullet$] Las dimensiones (número de filas y columnas con un formato concreto: 5x5, 10x10,...).
+    \item[$\bullet$] La resolución de un nivel concreto (el \textit{nonograma} de la solución sea igual al original).
+    \item[$\bullet$] El identificador del \textit{nonograma} sea único con respecto a los otros \textit{nonogramas}.
+ \end{itemize}
 
  \subsection{Pruebas de integración}
  Siguiendo el mismo ejemplar anteriormente citado, un test de \textit{integración} es aquel que no reúne ninguna
@@ -125,6 +143,19 @@ proyecto:
  extender de la clase \textit{Mock}, proporcionado por el propio paquete \textit{mockito}.
  En él se inicializan, mediante el método \textit{setUp()}, el \textit{BLoC} a probar junto con
  los servicios a simular mediante \textit{Mocks}.
+
+ Algunas de las pruebas de integración de interés en el aplicativo han verificado las
+ siguientes funcionalidades de \textit{BLoCs} relativos a \textit{nonogramas}:
+
+ \begin{itemize}
+    \item[$\bullet$] Recibir la lista de \textit{nonogramas} en línea sin errores.
+    \item[$\bullet$] Al ``pintar'' una celda comprobar que la celda está dentro de las celdas seleccionadas.
+    \item[$\bullet$] La publicación de un \textit{nonograma} concreto sin errores.
+    \item[$\bullet$] Comprobar si existe el progreso de la resolución de un nivel si está la opción
+    de autoguardado activado.  
+    \item[$\bullet$] Al seleccionar la última celda correcta del nivel comprobar que el \textit{nonograma}
+    aparece como \textit{resuelto}. 
+ \end{itemize}
 
  \subsection{Pruebas end-to-end}
  Las \textit{pruebas end-to-end}, son las pruebas finales y verifican que
